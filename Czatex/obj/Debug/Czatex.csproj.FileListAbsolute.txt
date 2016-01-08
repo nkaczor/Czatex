@@ -12,3 +12,5 @@ c:\users\kaczo\documents\visual studio 2015\Projects\Czatex\Czatex\obj\Debug\Cza
 c:\users\kaczo\documents\visual studio 2015\Projects\Czatex\Czatex\obj\Debug\Czatex.csproj.GenerateResource.Cache
 c:\users\kaczo\documents\visual studio 2015\Projects\Czatex\Czatex\obj\Debug\Czatex.exe
 c:\users\kaczo\documents\visual studio 2015\Projects\Czatex\Czatex\obj\Debug\Czatex.pdb
+c:\users\kaczo\documents\visual studio 2015\Projects\Czatex\Czatex\obj\Debug\Chat.g.cs
+c:\users\kaczo\documents\visual studio 2015\Projects\Czatex\Czatex\obj\Debug\Chat.baml
