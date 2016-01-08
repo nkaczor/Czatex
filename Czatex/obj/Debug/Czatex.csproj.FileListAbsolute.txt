@@ -1,0 +1,14 @@
+c:\users\kaczo\documents\visual studio 2015\Projects\Czatex\Czatex\bin\Debug\Czatex.exe.config
+c:\users\kaczo\documents\visual studio 2015\Projects\Czatex\Czatex\bin\Debug\Czatex.exe
+c:\users\kaczo\documents\visual studio 2015\Projects\Czatex\Czatex\bin\Debug\Czatex.pdb
+c:\users\kaczo\documents\visual studio 2015\Projects\Czatex\Czatex\obj\Debug\Czatex.csprojResolveAssemblyReference.cache
+c:\users\kaczo\documents\visual studio 2015\Projects\Czatex\Czatex\obj\Debug\MainWindow.g.cs
+c:\users\kaczo\documents\visual studio 2015\Projects\Czatex\Czatex\obj\Debug\App.g.cs
+c:\users\kaczo\documents\visual studio 2015\Projects\Czatex\Czatex\obj\Debug\Czatex_MarkupCompile.cache
+c:\users\kaczo\documents\visual studio 2015\Projects\Czatex\Czatex\obj\Debug\Czatex_MarkupCompile.lref
+c:\users\kaczo\documents\visual studio 2015\Projects\Czatex\Czatex\obj\Debug\MainWindow.baml
+c:\users\kaczo\documents\visual studio 2015\Projects\Czatex\Czatex\obj\Debug\Czatex.g.resources
+c:\users\kaczo\documents\visual studio 2015\Projects\Czatex\Czatex\obj\Debug\Czatex.Properties.Resources.resources
+c:\users\kaczo\documents\visual studio 2015\Projects\Czatex\Czatex\obj\Debug\Czatex.csproj.GenerateResource.Cache
+c:\users\kaczo\documents\visual studio 2015\Projects\Czatex\Czatex\obj\Debug\Czatex.exe
+c:\users\kaczo\documents\visual studio 2015\Projects\Czatex\Czatex\obj\Debug\Czatex.pdb
