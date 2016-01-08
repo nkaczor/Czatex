@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Czatex.Model;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -22,6 +23,12 @@ namespace Czatex
         public Chat()
         {
             InitializeComponent();
+            List <Client> clients = new List<Client>();
+            clients.Add(new Client("Natalia"));
+            clients.Add(new Client("Kamil") );
+            clients.Add(new Client("Duka") );
+            clientsList.ItemsSource = clients;
+
         }
     }
 }
