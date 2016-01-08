@@ -23,16 +23,22 @@ struct cln{
   int cfd;
   struct sockaddr_in caddr;
 };
+
 void* cthread(void *arg){
-  struct cln *c = (struct cln*) arg;
-  //read(c->cfd, readbuffer[0],sizeof(readbuffer));
-    //read(c->cfd, readbuffer[0],12);
-    read(c->cfd, readbuffer,sizeof(readbuffer));
+  struct cln *client = (struct cln*) arg;
+
+    printf("Polaczono z serwerem\n");
+    
+    read(client->cfd, readbuffer,sizeof(readbuffer));
       
-  if (strncmp(readbuffer, "117189",6)==0) write(c->cfd,buffer,250);
-  else write(c->cfd,"Unknown",10);
-  close(c->cfd);
-  free(c);
+  if (strncmp(readbuffer, "117189",6)==0) write(client->cfd,buffer,18);
+  else write(client->cfd,"Unknown",10);
+  
+  write(client->cfd,"Koniec wiadomosci!\n",20);
+  //write(client->cfd,"asd\n",4);
+  
+  close(client->cfd);
+  free(client);
   return 0;
   
 }
@@ -41,8 +47,9 @@ int main(int argc, char *argv[]){
 
   int on =1;
   pthread_t tid;
-  socklen_t slt;
-  struct sockaddr_in saddr, caddr;
+  //socklen_t slt;
+  struct sockaddr_in saddr;
+  
   saddr.sin_family=PF_INET;
   saddr.sin_port=htons(1234);
   saddr.sin_addr.s_addr=INADDR_ANY;
@@ -54,17 +61,17 @@ int main(int argc, char *argv[]){
 
   bind(sfd, (struct sockaddr*)&saddr, sizeof(saddr));
   listen(sfd, 10);
+  
+  
   while(1){
-    struct sockaddr_in client_sa;
+
+    struct cln* client = (struct cln*)malloc(sizeof(struct cln));
     
-    //struct cln *c = malloc(sizeof(struct cln));
-    //struct cln *c = new cln(sizeof(struct cln));
-    struct cln* c = (struct cln*)malloc(sizeof(struct cln));
+    socklen_t slt;
+    slt=sizeof(client->caddr);
+    client->cfd = accept(sfd, (struct sockaddr*)&client->caddr, &slt);
     
-    
-    slt=sizeof(c->caddr);
-    c->cfd = accept(sfd, (struct sockaddr*)&c->caddr, &slt);
-    pthread_create(&tid, NULL, cthread, c);
+    pthread_create(&tid, NULL, cthread, client);
     pthread_detach(tid);
   }
 
