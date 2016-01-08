@@ -12,6 +12,7 @@
 #include <iostream>
 #include <cstdio>
 #include <unistd.h>
+#include <string.h>
 
 char buffer[250] = "Natalia Kaczor \n";
 char readbuffer[250];
@@ -25,8 +26,8 @@ struct cln{
 void* cthread(void *arg){
   struct cln *c = (struct cln*) arg;
   //read(c->cfd, readbuffer[0],sizeof(readbuffer));
-    read(c->cfd, readbuffer[0],12);
-    
+    //read(c->cfd, readbuffer[0],12);
+    read(c->cfd, readbuffer,sizeof(readbuffer));
       
   if (strncmp(readbuffer, "117189",6)==0) write(c->cfd,buffer,250);
   else write(c->cfd,"Unknown",10);
@@ -56,7 +57,11 @@ int main(int argc, char *argv[]){
   while(1){
     struct sockaddr_in client_sa;
     
-    struct cln *c = malloc(sizeof(struct cln));
+    //struct cln *c = malloc(sizeof(struct cln));
+    //struct cln *c = new cln(sizeof(struct cln));
+    struct cln* c = (struct cln*)malloc(sizeof(struct cln));
+    
+    
     slt=sizeof(c->caddr);
     c->cfd = accept(sfd, (struct sockaddr*)&c->caddr, &slt);
     pthread_create(&tid, NULL, cthread, c);
