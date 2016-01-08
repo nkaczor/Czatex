@@ -27,15 +27,21 @@ struct cln{
 void* cthread(void *arg){
   struct cln *client = (struct cln*) arg;
 
-    printf("Polaczono z serwerem\n");
+  printf("Polaczono z serwerem\n");
     
-    read(client->cfd, readbuffer,sizeof(readbuffer));
+  read(client->cfd, readbuffer,sizeof(readbuffer));
+   
+  printf("%s\n",readbuffer);
       
-  if (strncmp(readbuffer, "117189",6)==0) write(client->cfd,buffer,18);
+  if (strncmp(readbuffer, "117189",6)==0) write(client->cfd,buffer,250);
   else write(client->cfd,"Unknown",10);
   
-  write(client->cfd,"Koniec wiadomosci!\n",20);
+  //write(client->cfd,"Koniec wiadomosci!\n",20);
   //write(client->cfd,"asd\n",4);
+  
+  //read(client->cfd, readbuffer, sizeof(readbuffer));
+  //printf("%s",readbuffer);
+  
   
   close(client->cfd);
   free(client);
@@ -46,8 +52,6 @@ void* cthread(void *arg){
 int main(int argc, char *argv[]){
 
   int on =1;
-  pthread_t tid;
-  //socklen_t slt;
   struct sockaddr_in saddr;
   
   saddr.sin_family=PF_INET;
@@ -69,8 +73,9 @@ int main(int argc, char *argv[]){
     
     socklen_t slt;
     slt=sizeof(client->caddr);
-    client->cfd = accept(sfd, (struct sockaddr*)&client->caddr, &slt);
-    
+    client->cfd = accept(sfd, (struct sockaddr*)&client->caddr,&slt);
+        
+    pthread_t tid;        
     pthread_create(&tid, NULL, cthread, client);
     pthread_detach(tid);
   }
