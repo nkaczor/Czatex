@@ -21,6 +21,10 @@ class Manager {
 public:
 
     void fillPublicMessages(string who, Message *msg);
+    string receivePublicMessages(string who);
+    void addUser(string name);
+    
+    
     static Manager& getManager();
     static void destroyManager();
 private:

@@ -56,21 +56,26 @@ void* cthread(void *arg) {
 
 int main(int argc, char *argv[]) {
 
-    UserList* userList = &UserList::getUserList();
-      
-    User *kamil = new User("Kamil");
-    User *tomys = new User("Tomys");
-    User *kaczor = new User("Kaczor");
-    
-    userList->insertUser(kamil);
-    userList->insertUser(tomys);
-    userList->insertUser(kaczor);
+//    UserList* userList = &UserList::getUserList();
+//      
+//    User *kamil = new User("Kamil");
+//    User *tomys = new User("Tomys");
+//    User *kaczor = new User("Kaczor");
+//    
+//    userList->insertUser(kamil);
+//    userList->insertUser(tomys);
+//    userList->insertUser(kaczor);
     
     //string listOfUsers = userList->getUsers();
     //cout<<listOfUsers<<endl;
     
     
     Manager* manager =&Manager::getManager();
+    
+    manager->addUser("Kamil");
+    manager->addUser("Tomys");
+    manager->addUser("Kaczor");
+    
     Message* msg = new Message("To ja tomys!");
     manager->fillPublicMessages("Tomys",msg);
     
@@ -80,7 +85,10 @@ int main(int argc, char *argv[]) {
 //    {
 //        
 //    }
-    string mymsg = tomys->getPublicMessages();
+    
+    
+    //string mymsg = tomys->getPublicMessages();
+    string mymsg = manager->receivePublicMessages("Kaczor");
     cout<<mymsg<<endl;
     
     

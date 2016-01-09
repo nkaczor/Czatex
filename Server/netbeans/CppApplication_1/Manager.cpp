@@ -27,6 +27,27 @@ Manager::Manager() {
 Manager::Manager(const Manager& orig) {
 }
 
+void Manager::addUser(string name)
+{
+    _userList->insertUser(new User(name));
+}
+
+string Manager::receivePublicMessages(string who)
+{
+    string messages;
+    for (vector<User*>::iterator iterator = _userList->getUsersList()->begin(); iterator != _userList->getUsersList()->end(); iterator++)
+    {  
+        User* user = *iterator;
+        if (user->getName() == who)
+        {
+            messages = user->getPublicMessages();
+            break;
+        }
+    }
+    
+    return messages;
+}
+
 void Manager::fillPublicMessages(string who, Message *msg)
 {
     for (vector<User*>::iterator iterator = _userList->getUsersList()->begin(); iterator != _userList->getUsersList()->end(); iterator++)

@@ -55,14 +55,14 @@ void* cthread(void *arg){
   printf("%s\n",readbuffer);
 
   printf("%s\n","przdwrite");   
-  write(client->cfd, "Hello world!\n", 13);
+  write(client->cfd, "Hello world\0", 13);
 	
   printf("%s\n","przedread2");    
   read(client->cfd, readbuffer2,sizeof(readbuffer2)); 
   printf("%s\n",readbuffer2);	
   
   printf("%s\n","przdwrite2");   
-  write(client->cfd, "Hello GHFSW!\n", 13);
+  write(client->cfd, "Hello GHFSW\0", 13);
 
   printf("%s\n","przedread3");    
   read(client->cfd, readbuffer3,sizeof(readbuffer3)); 
