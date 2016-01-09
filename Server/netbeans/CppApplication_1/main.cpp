@@ -117,7 +117,8 @@ int main(int argc, char *argv[]) {
     //    string mymsg = manager->receivePublicMessages("Kaczor");
     //    cout << mymsg << endl
 
-
+        
+       
         
         //testy
 //    char sentence [250] = "2 Kamil Kaczor";
@@ -130,9 +131,10 @@ int main(int argc, char *argv[]) {
 //    cout<<name<<endl<<from<<endl;
         
         //testy
+       
 
 
-    char sentence [250] = "7 Kaczor";
+    char sentence [250] = "4 Kaczor";
     char user [250];
     int id;
 
@@ -185,7 +187,6 @@ int main(int argc, char *argv[]) {
     
     //string mymsg = manager->receivePublicMessages("Tomys");
     //cout << mymsg << endl;
-
 
     //        int on = 1;
     //        struct sockaddr_in saddr;

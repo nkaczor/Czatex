@@ -71,7 +71,10 @@ void leave(char* sentence)
     sscanf(sentence, "%d %s", &id, name);
     
     //cout<<name<<endl;
-    cout<<"not yet - leave";
+    //cout<<"not yet - leave";
+    Manager* manager = &Manager::getManager();
+    manager->leave(string(name));
+    
 }
 
 void sendMessageToAll(char* sentence)
