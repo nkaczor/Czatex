@@ -14,6 +14,27 @@
 #include "Functions.h"
 
 #include <iostream>
+#include <sys/types.h>
+#include <sys/socket.h>
+#include <netinet/in.h>
+#include <arpa/inet.h>
+#include <netdb.h>
+#include <time.h>
+#include <stdlib.h>
+#include <stdio.h>
+#include <sys/wait.h>
+
+struct sockaddr_in fillSocketAddress(int port)
+{
+  struct sockaddr_in socketAddress;
+  
+  socketAddress.sin_family = PF_INET;
+  socketAddress.sin_port = htons(port);
+  socketAddress.sin_addr.s_addr = INADDR_ANY;
+  
+  return socketAddress;
+}
+
 
 void test()
 {

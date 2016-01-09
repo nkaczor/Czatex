@@ -16,7 +16,7 @@
 
 void test();
 
-
+struct sockaddr_in fillSocketAddress(int port);
 
 #endif /* FUNCTIONS_H */
 
