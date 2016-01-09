@@ -23,46 +23,43 @@ namespace Czatex
     /// </summary>
     public partial class MainWindow : Window
     {
+        ChatManager chatManager;
         public MainWindow()
         {
             InitializeComponent();
-            TcpClient client = new TcpClient("192.168.0.105", 1234);
-
-            Stream stream = client.GetStream();
-
-            StreamWriter writer = new StreamWriter(stream);
-
-            writer.WriteLine("Testing...");
-
-            client.Close();
-
-            //try
-            //{
-
-            //    ConnectionHandler cHandler = new ConnectionHandler(); 
-
-            //        /* get DNS host information */
-            //        Dns.BeginGetHostEntry("192.168.0.105",
-            //                              new AsyncCallback(cHandler.GetHostEntryCallback), null);
-
-
-            //}
-            //catch (Exception exc)
-            //{
-            //    MessageBox.Show("Exception:\t\n" + exc.Message.ToString());
-            //}
+            chatManager = new ChatManager();
         }
 
-        private void textBox_TextChanged(object sender, TextChangedEventArgs e)
-        {
-
-        }
-
+   
         private void button_Click(object sender, RoutedEventArgs e)
         {
-            var chat = new Chat();
-            chat.Show();
-            this.Close();
+            string login = loginTextBox.Text;
+
+            if (login.Length == 0)
+            {
+                alertLabel.Content = "Wpisz jakiś login";
+            }
+            else if (login.Any(x => Char.IsWhiteSpace(x))) {
+                alertLabel.Content = "Login zawiera białe znaki.";
+            }
+            else
+            {
+                int status = chatManager.Join(login);
+                if (status == 1) { 
+                    var chat = new Chat();
+                    chat.Show();
+                    this.Close();
+                }
+                else if (status == 2)
+                {
+                    alertLabel.Content = "Login zajęty";
+                }
+                else
+                {
+                    alertLabel.Content = "Wystąpił błąd";
+                }
+            }
+            
         }
     }
 }

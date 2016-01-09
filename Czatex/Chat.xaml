@@ -5,22 +5,22 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Czatex"
         mc:Ignorable="d"
-        Title="Czat" Height="443.247" Width="650.721">
+        Title="Czatex" Height="443.247" Width="650.721">
     <Grid Background="#FFD8EEFD">
         <Grid.RowDefinitions>
             <RowDefinition Height="51*"/>
             <RowDefinition Height="353*"/>
         </Grid.RowDefinitions>
-        <TextBox x:Name="textBox2" HorizontalAlignment="Left" Height="43" Margin="24,291.893,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="359" Grid.Row="1"/>
-        <Button x:Name="sendButton" Content="Wyślij" HorizontalAlignment="Left" Margin="399,291.893,0,0" VerticalAlignment="Top" Width="85" Height="43" Grid.Row="1" Background="#FF2B0868" Foreground="#FFF7E9E9"/>
-        <Label x:Name="friendLabel" Content="Natalia Kaczor" HorizontalAlignment="Left" Margin="24,10,0,0" VerticalAlignment="Top" Width="460" FontSize="18.667"/>
-        <ListBox x:Name="clientsList" HorizontalAlignment="Left" Height="367" Margin="501,19,0,0" VerticalAlignment="Top" Width="123" Grid.RowSpan="2">
+        <TextBox x:Name="messageTextBox" HorizontalAlignment="Left" Height="43" Margin="24,292,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="359" Grid.Row="1"/>
+        <Button x:Name="sendButton" Content="Wyślij" HorizontalAlignment="Left" Margin="399,291.893,0,0" VerticalAlignment="Top" Width="85" Height="43" Grid.Row="1" Background="#FF2B0868" Foreground="#FFF7E9E9" Click="sendButton_Click"/>
+        <Label x:Name="friendLabel" Content="Czat publiczny" HorizontalAlignment="Left" Margin="24,10,0,0" VerticalAlignment="Top" Width="460" FontSize="18.667"/>
+        <ListBox x:Name="clientsList" HorizontalAlignment="Left" Height="334" Margin="501,0,0,0" VerticalAlignment="Top" Width="123" Grid.Row="1">
             <ListBox.ItemTemplate>
                 <DataTemplate>
-                    <Grid Margin="0,2">
+                    <Grid>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*" />
-                            <ColumnDefinition Width="100" />
+                            <ColumnDefinition Width="*" />
                         </Grid.ColumnDefinitions>
                         <TextBlock Text="{Binding Name}" />
 
@@ -29,6 +29,21 @@
             </ListBox.ItemTemplate>
 
         </ListBox>
-        <ListBox x:Name="messageList" HorizontalAlignment="Left" Height="276" Margin="24,0,0,0" Grid.Row="1" VerticalAlignment="Top" Width="460"/>
+        <ListBox x:Name="messagesList" HorizontalAlignment="Left" Height="276" Margin="24,0,0,0" Grid.Row="1" VerticalAlignment="Top" Width="460" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="3*" />
+                            <ColumnDefinition Width="7*" />
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Grid.Column="0" Text="{Binding From.Name}" Foreground="#FF043B89" Margin="0 0 3 0" FontWeight="Bold" FontSize="13.333"/>
+                        <TextBlock Grid.Column="1" Text ="{Binding MessageText}" TextWrapping="Wrap" FontSize="13.333"/>
+                    </Grid>  
+                     
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+        <Button x:Name="publicButton" Content="Publiczny" HorizontalAlignment="Left" Margin="501,14,0,0" VerticalAlignment="Top" Width="123" Height="31" Background="#FF2B0868" Foreground="#FFF7E9E9"/>
     </Grid>
 </Window>

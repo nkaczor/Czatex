@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Czatex.Model
 {
-    class Client
+    public class Client
     {
         public Client(string name) {
             _name = name;
