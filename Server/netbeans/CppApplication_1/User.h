@@ -26,6 +26,7 @@ public:
     void setName(string name);
     string getName();
     string getPublicMessages();
+    void insertPublicMessage(Message* msg);
     
     User(const User& orig);
     virtual ~User();

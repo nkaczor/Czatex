@@ -36,6 +36,7 @@ OBJECTDIR=${CND_BUILDDIR}/${CND_CONF}/${CND_PLATFORM}
 # Object Files
 OBJECTFILES= \
 	${OBJECTDIR}/Functions.o \
+	${OBJECTDIR}/Manager.o \
 	${OBJECTDIR}/Message.o \
 	${OBJECTDIR}/User.o \
 	${OBJECTDIR}/UserList.o \
@@ -70,6 +71,11 @@ ${OBJECTDIR}/Functions.o: Functions.cpp
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
 	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Functions.o Functions.cpp
+
+${OBJECTDIR}/Manager.o: Manager.cpp 
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Manager.o Manager.cpp
 
 ${OBJECTDIR}/Message.o: Message.cpp 
 	${MKDIR} -p ${OBJECTDIR}

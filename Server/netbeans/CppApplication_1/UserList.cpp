@@ -18,7 +18,7 @@
 #include <string>
 
 UserList::UserList() {
-    _userList = new std::vector<User*>();
+    _usersList = new std::vector<User*>();
 }
 
 UserList::UserList(const UserList& orig) {
@@ -31,9 +31,9 @@ string UserList::getUsers()
 {
     string users = "";
     
-    for (vector<User*>::iterator iterator = _userList->begin(); iterator != _userList->end(); iterator++)
+    for (vector<User*>::iterator iterator = _usersList->begin(); iterator != _usersList->end(); iterator++)
     {  
-        if (std::distance(iterator, _userList->end())-1 == 0)
+        if (std::distance(iterator, _usersList->end())-1 == 0)
         {
            users = users + (*iterator)->getName(); 
         }else
@@ -45,9 +45,14 @@ string UserList::getUsers()
     return users;
 }
 
+vector<User*>* UserList::getUsersList()
+{
+    return _usersList;
+}
+
 void UserList::insertUser(User *user)
 {
-    _userList->push_back(user);
+    _usersList->push_back(user);
 }
 
 UserList& UserList::getUserList()

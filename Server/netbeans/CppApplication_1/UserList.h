@@ -24,13 +24,14 @@ public:
     
     void insertUser(User* user);
     string getUsers();
+    vector <User*>* getUsersList();
     
     static UserList& getUserList();
     static void destroyUserList();
 
 private:
     
-    vector <User*> *_userList;
+    vector <User*> *_usersList;
     
     UserList();
     UserList(const UserList& orig);

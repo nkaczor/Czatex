@@ -37,6 +37,12 @@ string User::getPublicMessages()
     return messages;
 }
 
+void User::insertPublicMessage(Message* msg)
+{
+    _publicMessagesList->push_back(msg);
+}
+
+
 void User::removePublicMessages()
 {
     _publicMessagesList->clear();

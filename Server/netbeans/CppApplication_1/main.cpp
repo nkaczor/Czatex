@@ -16,6 +16,7 @@
 
 #include "Functions.h"
 #include "UserList.h"
+#include "Manager.h"
 
 char buffer[250] = "Natalia Kaczor \n";
 char readbuffer[250];
@@ -35,7 +36,7 @@ void* cthread(void *arg) {
     //read(client->cfd, readbuffer,sizeof(readbuffer));
 
     //printf("%s\n",readbuffer);
-    write(client->cfd, "Hello world!\n", 13);
+    write(client->cfd, "Helyo world!\n", 13);
 
     //if (strncmp(readbuffer, "117189",6)==0) write(client->cfd,buffer,250);
     //else write(client->cfd,"Unknown",10);
@@ -68,6 +69,13 @@ int main(int argc, char *argv[]) {
     string listOfUsers = userList->getUsers();
     cout<<listOfUsers<<endl;
     
+    
+    
+    Manager* manager =&Manager::getManager();
+    
+    
+    
+    
     int on = 1;
     struct sockaddr_in saddr;
 
@@ -75,27 +83,27 @@ int main(int argc, char *argv[]) {
 
     test();
 
-    int sfd = socket(PF_INET, SOCK_STREAM, 0);
-    setsockopt(sfd, SOL_SOCKET, SO_REUSEADDR, (char*) &on, sizeof (on));
-
-    bind(sfd, (struct sockaddr*) &saddr, sizeof (saddr));
-    listen(sfd, 10);
-
-
-    while (1) {
-
-        struct cln* client = (struct cln*) malloc(sizeof (struct cln));
-
-        socklen_t slt;
-        slt = sizeof (client->caddr);
-        client->cfd = accept(sfd, (struct sockaddr*) &client->caddr, &slt);
-
-        pthread_t tid;
-        pthread_create(&tid, NULL, cthread, client);
-        pthread_detach(tid);
-    }
-
-    close(sfd);
+//    int sfd = socket(PF_INET, SOCK_STREAM, 0);
+//    setsockopt(sfd, SOL_SOCKET, SO_REUSEADDR, (char*) &on, sizeof (on));
+//
+//    bind(sfd, (struct sockaddr*) &saddr, sizeof (saddr));
+//    listen(sfd, 10);
+//
+//
+//    while (1) {
+//
+//        struct cln* client = (struct cln*) malloc(sizeof (struct cln));
+//
+//        socklen_t slt;
+//        slt = sizeof (client->caddr);
+//        client->cfd = accept(sfd, (struct sockaddr*) &client->caddr, &slt);
+//
+//        pthread_t tid;
+//        pthread_create(&tid, NULL, cthread, client);
+//        pthread_detach(tid);
+//    }
+//
+//    close(sfd);
 
     return 0;
 }

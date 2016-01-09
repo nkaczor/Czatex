@@ -14,9 +14,14 @@
 #ifndef FUNCTIONS_H
 #define FUNCTIONS_H
 
+#include <string>
+#include <vector>
+#include "Message.h"
+
 void test();
 
 struct sockaddr_in fillSocketAddress(int port);
+
 
 #endif /* FUNCTIONS_H */
 
