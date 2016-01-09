@@ -93,6 +93,40 @@ void sendMessageToAll(char* sentence)
     //return "not yet - getMessagesFrom";
 }
 
+
+void sendMessageTo(char* sentence)
+{
+    char name [250];
+    char to [250];
+    char msg [250];
+    int id;
+
+    sscanf(sentence, "%d %s %s %[^\t]", &id, name, to, msg);
+    
+//    cout<<"from: "<<name<<endl;
+//    cout<<"to: "<<to<<endl;
+//    cout<<"msg: "<<msg<<endl;
+
+    Manager* manager = &Manager::getManager();
+    
+    cout<< "not yet - sendMessageTo";
+}
+
+
+string getClients(char* sentence)
+{
+    char name [250];
+    int id;
+    string listOfClients;
+
+    sscanf(sentence, "%d %s", &id, name);
+    
+    Manager* manager = &Manager::getManager();
+    listOfClients = manager->receiveClientList();
+    
+    return listOfClients;
+}
+
 struct sockaddr_in fillSocketAddress(int port) {
     struct sockaddr_in socketAddress;
 

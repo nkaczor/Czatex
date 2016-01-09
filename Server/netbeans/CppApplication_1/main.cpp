@@ -94,6 +94,10 @@ int main(int argc, char *argv[]) {
     manager->addUser("Tomys");
     manager->addUser("Kaczor");
 
+    
+    //string list = manager->receiveClientList();
+    //cout<<list<<endl;
+    
     //    if(manager->addUser("Kamil"))
     //    {
     //        cout<<"dodano nowego usera\n";
@@ -128,14 +132,14 @@ int main(int argc, char *argv[]) {
         //testy
 
 
-    char sentence [250] = "5 Kaczor\n Owca jest genialny";
-    char text [250];
+    char sentence [250] = "7 Kaczor";
+    char user [250];
     int id;
 
-    sscanf(sentence, "%d %[^\n\t]", &id, text);
-    //printf("%s->%d\n", text, id);
+    sscanf(sentence, "%d %s", &id, user);  
+    string userName = string(user);
+    //cout<<userName<<endl;
     
-    //string nick;
     switch (id) {
         case 1:
         {//GetAllMessages
@@ -162,14 +166,25 @@ int main(int argc, char *argv[]) {
             sendMessageToAll(sentence);
             break;
         }
+        case 6:
+        {//Send message to
+            sendMessageTo(sentence);
+            break;
+        }
+        case 7:
+        {//GetClients
+            string clients;
+            clients = getClients(sentence);
+            break;
+        }
             
 
         default:
             cout << "nieznana komenda" << endl;
     }
     
-    string mymsg = manager->receivePublicMessages("Tomys");
-    cout << mymsg << endl;
+    //string mymsg = manager->receivePublicMessages("Tomys");
+    //cout << mymsg << endl;
 
 
     //        int on = 1;

@@ -76,7 +76,10 @@ void Manager::fillPublicMessages(Message *msg)
 }
 
 
-
+string Manager::receiveClientList()
+{
+    return _userList->getUsers();
+}
 
 
 Manager::~Manager() {
