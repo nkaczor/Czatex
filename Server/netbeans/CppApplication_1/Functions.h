@@ -22,6 +22,9 @@ void test();
 
 struct sockaddr_in fillSocketAddress(int port);
 
+string getAllMessages(char* sentence);
+string getMessagesFrom(char* sentence);
+
 
 #endif /* FUNCTIONS_H */
 

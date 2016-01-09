@@ -93,65 +93,93 @@ int main(int argc, char *argv[]) {
     manager->addUser("Kamil");
     manager->addUser("Tomys");
     manager->addUser("Kaczor");
+
+    //    if(manager->addUser("Kamil"))
+    //    {
+    //        cout<<"dodano nowego usera\n";
+    //    }else
+    //    {
+    //        cout<<"Taki user juz istnieje\n";
+    //    }
+    //    
+    //    cout<<manager->getNumberOfUsers()<<endl;
+
+        Message* msg = new Message("To ja tomys!");
+        manager->fillPublicMessages("Tomys", msg);
+        manager->fillPublicMessages("Kaczor", new Message("To ja kaczor"));
+    //    
+    //    string mymsg = manager->receivePublicMessages("Kaczor");
+    //    cout << mymsg << endl
+
+
+        
+        //testy
+//    char sentence [250] = "2 Kamil Kaczor";
+//    char name [250];
+//    char from [250];
+//    int id;
+//        
+//    sscanf(sentence, "%d %s %s", &id, name, from);  
+//        
+//    cout<<name<<endl<<from<<endl;
+        
+        //testy
+
+
+    char sentence [250] = "2 Kamil Kaczor";
+    char text [250];
+    int id;
+
+    sscanf(sentence, "%d %[^\n\t]", &id, text);
+    //printf("%s->%d\n", text, id);
     
-    if(manager->addUser("Kamil"))
-    {
-        cout<<"dodano nowego usera\n";
-    }else
-    {
-        cout<<"Taki user juz istnieje\n";
+    //string nick;
+    switch (id) {
+        case 1:
+        {//GetAllMessages
+            string allMessages = getAllMessages(sentence);
+            break;
+        }
+        case 2:
+        {//GetMessagesFrom
+            string messages = getMessagesFrom(sentence);
+            break;
+        }
+            
+
+        default:
+            cout << "nieznana komenda" << endl;
     }
-    
-    cout<<manager->getNumberOfUsers()<<endl;
-    
-//    Message* msg = new Message("To ja tomys!");
-//    manager->fillPublicMessages("Tomys", msg);
-//    manager->fillPublicMessages("Kaczor", new Message("To ja kaczor"));
-//    
-//    string mymsg = manager->receivePublicMessages("Kaczor");
-//    cout << mymsg << endl
-            
-            
-            
 
-//    char sentence [] = "356 \nowca jest genialny";
-//    char str [20];
-//    int i;
-//
-//    sscanf(sentence, "%d %[^\n\t]", &i, str);
-//    printf("%s->%d\n", str, i);
-    
-    
-    
 
-//        int on = 1;
-//        struct sockaddr_in saddr;
-//    
-//        saddr = fillSocketAddress(1234);
-//    
-//        test();
-//    
-//        int sfd = socket(PF_INET, SOCK_STREAM, 0);
-//        setsockopt(sfd, SOL_SOCKET, SO_REUSEADDR, (char*) &on, sizeof (on));
-//    
-//        bind(sfd, (struct sockaddr*) &saddr, sizeof (saddr));
-//        listen(sfd, 10);
-//    
-//    
-//        while (1) {
-//    
-//            struct cln* client = (struct cln*) malloc(sizeof (struct cln));
-//    
-//            socklen_t slt;
-//            slt = sizeof (client->caddr);
-//            client->cfd = accept(sfd, (struct sockaddr*) &client->caddr, &slt);
-//    
-//            pthread_t tid;
-//            pthread_create(&tid, NULL, cthread, client);
-//            pthread_detach(tid);
-//        }
-//    
-//        close(sfd);
+    //        int on = 1;
+    //        struct sockaddr_in saddr;
+    //    
+    //        saddr = fillSocketAddress(1234);
+    //    
+    //        test();
+    //    
+    //        int sfd = socket(PF_INET, SOCK_STREAM, 0);
+    //        setsockopt(sfd, SOL_SOCKET, SO_REUSEADDR, (char*) &on, sizeof (on));
+    //    
+    //        bind(sfd, (struct sockaddr*) &saddr, sizeof (saddr));
+    //        listen(sfd, 10);
+    //    
+    //    
+    //        while (1) {
+    //    
+    //            struct cln* client = (struct cln*) malloc(sizeof (struct cln));
+    //    
+    //            socklen_t slt;
+    //            slt = sizeof (client->caddr);
+    //            client->cfd = accept(sfd, (struct sockaddr*) &client->caddr, &slt);
+    //    
+    //            pthread_t tid;
+    //            pthread_create(&tid, NULL, cthread, client);
+    //            pthread_detach(tid);
+    //        }
+    //    
+    //        close(sfd);
 
     return 0;
 }

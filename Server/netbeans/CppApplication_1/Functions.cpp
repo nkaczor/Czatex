@@ -24,6 +24,34 @@
 #include <stdio.h>
 #include <sys/wait.h>
 
+#include "Manager.h"
+
+
+string getAllMessages(char* sentence)
+{
+    int id;
+    char name [250];
+    
+    Manager* manager = &Manager::getManager();
+    sscanf(sentence, "%d %s", &id, name);   
+    
+    return manager->receivePublicMessages(string(name));
+}
+
+string getMessagesFrom(char* sentence)
+{ 
+    char name [250];
+    char from [250];
+    int id;
+        
+    sscanf(sentence, "%d %s %s", &id, name, from);  
+    
+    Manager* manager = &Manager::getManager();
+        
+    //cout<<string(name)<<endl<<string(from)<<endl;
+    
+    return "not yet - getMessagesFrom";
+}
 
 
 struct sockaddr_in fillSocketAddress(int port)
