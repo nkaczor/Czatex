@@ -14,6 +14,8 @@
 #include <unistd.h>
 #include <string.h>
 
+#include "Functions.h"
+
 char buffer[250] = "Natalia Kaczor \n";
 char readbuffer[250];
 
@@ -69,6 +71,8 @@ int main(int argc, char *argv[]){
   struct sockaddr_in saddr;
   
   saddr = fillSocketAddress(1234);
+  
+  test();
   
   int sfd=socket(PF_INET,SOCK_STREAM,0);
   setsockopt(sfd, SOL_SOCKET,SO_REUSEADDR, (char*)&on, sizeof(on));
