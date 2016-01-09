@@ -126,7 +126,7 @@ int main(int argc, char *argv[]) {
         //testy
 
 
-    char sentence [250] = "2 Kamil Kaczor";
+    char sentence [250] = "5 Kaczor\n Owca jest genialny";
     char text [250];
     int id;
 
@@ -145,11 +145,29 @@ int main(int argc, char *argv[]) {
             string messages = getMessagesFrom(sentence);
             break;
         }
+        case 3:
+        {//Join
+            int flag = join(sentence);
+            break;
+        }
+        case 4:
+        {//Leave
+            leave(sentence);
+            break;
+        }
+        case 5:
+        {//Send message to all
+            sendMessageToAll(sentence);
+            break;
+        }
             
 
         default:
             cout << "nieznana komenda" << endl;
     }
+    
+    string mymsg = manager->receivePublicMessages("Tomys");
+    cout << mymsg << endl;
 
 
     //        int on = 1;
