@@ -66,13 +66,22 @@ int main(int argc, char *argv[]) {
     userList->insertUser(tomys);
     userList->insertUser(kaczor);
     
-    string listOfUsers = userList->getUsers();
-    cout<<listOfUsers<<endl;
-    
+    //string listOfUsers = userList->getUsers();
+    //cout<<listOfUsers<<endl;
     
     
     Manager* manager =&Manager::getManager();
+    Message* msg = new Message("To ja tomys!");
+    manager->fillPublicMessages("Tomys",msg);
     
+    manager->fillPublicMessages("Kaczor",new Message("To ja kaczor"));
+    
+//    for(int i=0; i<userList->getNumberOfUsers())
+//    {
+//        
+//    }
+    string mymsg = tomys->getPublicMessages();
+    cout<<mymsg<<endl;
     
     
     

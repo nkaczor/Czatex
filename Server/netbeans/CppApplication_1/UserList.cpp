@@ -27,6 +27,11 @@ UserList::UserList(const UserList& orig) {
 UserList::~UserList() {
 }
 
+int UserList::getNumberOfUsers()
+{
+    return _usersList->size();
+}
+
 string UserList::getUsers()
 {
     string users = "";

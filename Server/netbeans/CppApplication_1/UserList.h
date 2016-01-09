@@ -25,6 +25,7 @@ public:
     void insertUser(User* user);
     string getUsers();
     vector <User*>* getUsersList();
+    int getNumberOfUsers();
     
     static UserList& getUserList();
     static void destroyUserList();
