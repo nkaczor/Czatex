@@ -44,7 +44,7 @@ void* cthread(void *arg) {
     //write(client->cfd,"asd\n",4);
 
     //read(client->cfd, readbuffer, sizeof(readbuffer));
-    //printf("%s",readbuffer);
+    //printf("%s\n",readbuffer);
 
 
     close(client->cfd);
@@ -56,9 +56,17 @@ void* cthread(void *arg) {
 int main(int argc, char *argv[]) {
 
     UserList* userList = &UserList::getUserList();
-    
-    
+      
     User *kamil = new User("Kamil");
+    User *tomys = new User("Tomys");
+    User *kaczor = new User("Kaczor");
+    
+    userList->insertUser(kamil);
+    userList->insertUser(tomys);
+    userList->insertUser(kaczor);
+    
+    string listOfUsers = userList->getUsers();
+    cout<<listOfUsers<<endl;
     
     int on = 1;
     struct sockaddr_in saddr;

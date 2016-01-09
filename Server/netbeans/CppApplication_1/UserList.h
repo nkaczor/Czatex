@@ -22,7 +22,7 @@ using namespace std;
 class UserList {
 public:
     
-    void insertUser(User user);
+    void insertUser(User* user);
     string getUsers();
     
     static UserList& getUserList();
@@ -30,7 +30,7 @@ public:
 
 private:
     
-    vector <User> *_userList;
+    vector <User*> *_userList;
     
     UserList();
     UserList(const UserList& orig);

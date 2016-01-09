@@ -14,8 +14,11 @@
 #include "UserList.h"
 #include <cstddef>
 
+#include <iostream>
+#include <string>
+
 UserList::UserList() {
-    _userList = new std::vector<User>();
+    _userList = new std::vector<User*>();
 }
 
 UserList::UserList(const UserList& orig) {
@@ -26,17 +29,23 @@ UserList::~UserList() {
 
 string UserList::getUsers()
 {
-    string users;
+    string users = "";
     
-    for (vector<User>::iterator iterator = _userList->begin(); iterator != _userList->end(); iterator++)
-    {
-        //
+    for (vector<User*>::iterator iterator = _userList->begin(); iterator != _userList->end(); iterator++)
+    {  
+        if (std::distance(iterator, _userList->end())-1 == 0)
+        {
+           users = users + (*iterator)->getName(); 
+        }else
+        {
+            users = users + (*iterator)->getName() + "\n";
+        }  
     }
     
     return users;
 }
 
-void UserList::insertUser(User user)
+void UserList::insertUser(User *user)
 {
     _userList->push_back(user);
 }

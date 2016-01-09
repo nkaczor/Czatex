@@ -15,8 +15,32 @@
 
 User::User(string name) {
     _name = name;
+    _publicMessagesList = new vector <Message*>();
 }
 
+string User::getPublicMessages()
+{
+    string messages;
+    
+    for (vector<Message*>::iterator iterator = _publicMessagesList->begin(); iterator != _publicMessagesList->end(); iterator++)
+    {  
+        if (std::distance(iterator, _publicMessagesList->end())-1 == 0)
+        {
+           messages = messages + (*iterator)->getMessage(); 
+        }else
+        {
+            messages = messages + (*iterator)->getMessage() + "\n";
+        }  
+    }
+    
+    removePublicMessages();
+    return messages;
+}
+
+void User::removePublicMessages()
+{
+    _publicMessagesList->clear();
+}
 void User::setName(string name)
 {
     _name = name;

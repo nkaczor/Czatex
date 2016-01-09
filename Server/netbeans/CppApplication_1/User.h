@@ -15,6 +15,8 @@
 #define USER_H
 
 #include <string>
+#include <vector>
+#include "Message.h"
 using namespace std;
 
 class User {
@@ -23,12 +25,14 @@ public:
     
     void setName(string name);
     string getName();
+    string getPublicMessages();
     
     User(const User& orig);
     virtual ~User();
 private:
-    string _name; 
-
+    string _name;
+    vector <Message*> *_publicMessagesList;
+    void removePublicMessages();
 };
 
 
