@@ -27,9 +27,21 @@ Manager::Manager() {
 Manager::Manager(const Manager& orig) {
 }
 
-void Manager::addUser(string name)
+bool Manager::addUser(string name)
 {
-    _userList->insertUser(new User(name));
+    if (_userList->insertUser(new User(name)))
+    {
+        return true;
+    }else
+    {
+        return false;
+    }
+    
+}
+
+int Manager::getNumberOfUsers()
+{
+    return _userList->getNumberOfUsers();
 }
 
 string Manager::receivePublicMessages(string who)

@@ -27,53 +27,59 @@ UserList::UserList(const UserList& orig) {
 UserList::~UserList() {
 }
 
-int UserList::getNumberOfUsers()
-{
+int UserList::getNumberOfUsers() {
     return _usersList->size();
 }
 
-string UserList::getUsers()
-{
+string UserList::getUsers() {
     string users = "";
-    
-    for (vector<User*>::iterator iterator = _usersList->begin(); iterator != _usersList->end(); iterator++)
-    {  
-        if (std::distance(iterator, _usersList->end())-1 == 0)
-        {
-           users = users + (*iterator)->getName(); 
-        }else
-        {
+
+    for (vector<User*>::iterator iterator = _usersList->begin(); iterator != _usersList->end(); iterator++) {
+        if (std::distance(iterator, _usersList->end()) - 1 == 0) {
+            users = users + (*iterator)->getName();
+        } else {
             users = users + (*iterator)->getName() + "\n";
-        }  
+        }
     }
-    
+
     return users;
 }
 
-vector<User*>* UserList::getUsersList()
-{
+vector<User*>* UserList::getUsersList() {
     return _usersList;
 }
 
-void UserList::insertUser(User *user)
-{
-    _usersList->push_back(user);
+bool UserList::insertUser(User *user) {
+    bool exist = false;
+
+    for (vector<User*>::iterator iterator = _usersList->begin(); iterator != _usersList->end(); iterator++) {
+        User *currUser = *iterator;
+        
+        if (user->getName() == currUser->getName())
+            exist = true;
+    }
+
+    if (!exist) {
+        _usersList->push_back(user);
+        return true;
+    } else {
+        return false;
+    }
+
 }
 
-UserList& UserList::getUserList()
-{
-	static UserList *userList = NULL;
+UserList& UserList::getUserList() {
+    static UserList *userList = NULL;
 
-	if (userList == NULL){
-		userList = new UserList();
-	}
+    if (userList == NULL) {
+        userList = new UserList();
+    }
 
-	return *userList;
+    return *userList;
 }
 
-void UserList::destroyUserList()
-{
-	UserList *player = &getUserList();
-	delete player;
+void UserList::destroyUserList() {
+    UserList *player = &getUserList();
+    delete player;
 }
 

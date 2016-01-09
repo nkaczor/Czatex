@@ -22,8 +22,8 @@ public:
 
     void fillPublicMessages(string who, Message *msg);
     string receivePublicMessages(string who);
-    void addUser(string name);
-    
+    bool addUser(string name);
+    int getNumberOfUsers();
     
     static Manager& getManager();
     static void destroyManager();

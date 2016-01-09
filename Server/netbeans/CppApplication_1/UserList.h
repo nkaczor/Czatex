@@ -22,7 +22,7 @@ using namespace std;
 class UserList {
 public:
     
-    void insertUser(User* user);
+    bool insertUser(User* user);
     string getUsers();
     vector <User*>* getUsersList();
     int getNumberOfUsers();
