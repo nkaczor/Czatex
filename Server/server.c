@@ -18,10 +18,13 @@ struct cln{
 };
 void* cthread(void *arg){
   struct cln *c = (struct cln*) arg;
-  read(c->cfd, readbuffer,sizeof(readbuffer));
+  //read(c->cfd, readbuffer,sizeof(readbuffer));
       
-  if (strncmp(readbuffer, "117189",6)==0) write(c->cfd,buffer,250);
-  else write(c->cfd,"Unknown",10);
+  //if (strncmp(readbuffer, "117189",6)==0) write(c->cfd,buffer,250);
+  //else write(c->cfd,"Unknown",10);
+  
+  write(c->cfd, "Hello world!\n", 13);
+  
   close(c->cfd);
   free(c);
   return 0;
