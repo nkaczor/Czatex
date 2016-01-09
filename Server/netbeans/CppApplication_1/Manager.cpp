@@ -60,14 +60,15 @@ string Manager::receivePublicMessages(string who)
     return messages;
 }
 
-void Manager::fillPublicMessages(string who, Message *msg)
+void Manager::fillPublicMessages(Message *msg)
 {
     for (vector<User*>::iterator iterator = _userList->getUsersList()->begin(); iterator != _userList->getUsersList()->end(); iterator++)
     {  
         User *user = *iterator;
         
-        if (user->getName() == who)
+        if (user->getName() == msg->getAuthor())
             continue;
+        
         
         user->insertPublicMessage(msg);
         

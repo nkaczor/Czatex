@@ -84,7 +84,7 @@ void sendMessageToAll(char* sentence)
 
     Manager* manager = &Manager::getManager();
 
-    manager->fillPublicMessages(string(name),new Message(string(msg)));
+    manager->fillPublicMessages(new Message(string(name),string(msg)));
     //cout<<"from: "<<string(name)<<endl;
     //cout<<"msg: "<<string(msg)<<endl;
     

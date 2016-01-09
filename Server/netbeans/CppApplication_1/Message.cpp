@@ -13,13 +13,19 @@
 
 #include "Message.h"
 
-Message::Message(string text) {
+Message::Message(string author,string text) {
 _text = text;
+_author = author;
 }
 
 string Message::getMessage()
 {
     return _text;
+}
+
+string Message::getAuthor()
+{
+    return _author;
 }
 
 Message::Message(const Message& orig) {

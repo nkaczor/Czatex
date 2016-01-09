@@ -24,12 +24,14 @@ string User::getPublicMessages()
     
     for (vector<Message*>::iterator iterator = _publicMessagesList->begin(); iterator != _publicMessagesList->end(); iterator++)
     {  
+        
+        
         if (std::distance(iterator, _publicMessagesList->end())-1 == 0)
         {
-           messages = messages + (*iterator)->getMessage(); 
+           messages = messages +(*iterator)->getAuthor()+";"+(*iterator)->getMessage(); 
         }else
         {
-            messages = messages + (*iterator)->getMessage() + "\n";
+            messages = messages +(*iterator)->getAuthor()+";" + (*iterator)->getMessage() + "\n";
         }  
     }
     

@@ -20,7 +20,7 @@
 class Manager {
 public:
 
-    void fillPublicMessages(string who, Message *msg);
+    void fillPublicMessages(Message *msg);
     string receivePublicMessages(string who);
     bool addUser(string name);
     int getNumberOfUsers();

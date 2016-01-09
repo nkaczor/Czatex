@@ -19,13 +19,15 @@ using namespace std;
 
 class Message {
 public:
-    Message(string text);
+    Message(string author, string text);
     Message(const Message& orig);
     virtual ~Message();
     
     string getMessage();
+    string getAuthor();
     
 private:
+    string _author;
     string _text;
 
 };

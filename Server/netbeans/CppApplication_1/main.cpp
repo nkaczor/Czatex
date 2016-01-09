@@ -104,9 +104,11 @@ int main(int argc, char *argv[]) {
     //    
     //    cout<<manager->getNumberOfUsers()<<endl;
 
-        Message* msg = new Message("To ja tomys!");
-        manager->fillPublicMessages("Tomys", msg);
-        manager->fillPublicMessages("Kaczor", new Message("To ja kaczor"));
+        Message* msg = new Message("Tomys", "To ja tomys!");
+        manager->fillPublicMessages(msg);
+        manager->fillPublicMessages(new Message("Kaczor","To ja kaczor"));
+        manager->fillPublicMessages(new Message("Kaczor","To znowu ja kaczor"));
+        manager->fillPublicMessages(new Message("Kamil","Tu owca"));
     //    
     //    string mymsg = manager->receivePublicMessages("Kaczor");
     //    cout << mymsg << endl
