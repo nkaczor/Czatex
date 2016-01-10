@@ -46,7 +46,7 @@ namespace Czatex
             {
                 int status = chatManager.Join(login);
                 if (status == 1) { 
-                    var chat = new Chat();
+                    var chat = new Chat(chatManager, login);
                     chat.Show();
                     this.Close();
                 }

@@ -22,20 +22,21 @@ namespace Czatex
     {
         private Client natalia, kamil, duka, sebastian;
         List<Message> messages = new List<Message>();
-        public Chat()
+        private ChatManager chatManager;
+        private string myLogin;
+        public Chat(ChatManager chatManager, string myLogin)
         {
+            this.chatManager = chatManager;
+            this.myLogin = myLogin;
             InitializeComponent();
-            List <Client> clients = new List<Client>();
+            List<Client> clients = chatManager.GetAllClients(myLogin);
            
             natalia = new Client("Natalia");
             kamil = new Client("Kamil");
             duka = new Client("Duka");
             sebastian = new Client("Sebastian");
 
-            clients.Add(natalia);
-            clients.Add(kamil);
-            clients.Add(duka);
-            clients.Add(sebastian);
+           
             clientsList.ItemsSource = clients;
             messagesList.ItemsSource = messages;
             messages.Add(new Message("Co Tam Duka porabiasz", natalia));
