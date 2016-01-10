@@ -16,14 +16,40 @@
 User::User(string name) {
     _name = name;
     _publicMessagesList = new vector <Message*>();
+    _publicMessagesList->push_back(new Message("Admin","Witamy na platformie Czatex! Udanej konwersacji"));
 }
 
 
 string User::getMessageFrom(string who)
 {
+    string msg;
+    map<string, vector<Message*> >::iterator it = _messageBox.find(who);
     
+    if (it == _messageBox.end())
+        msg = "";
+    else
+    {
+        for (vector<Message*>::iterator iterator = it->second.begin(); iterator != it->second.end(); iterator++) {
+                Message *message = *iterator;
+                //cout << message->getMessage() << endl;
+                msg = msg +(*iterator)->getMessage()+"\n"; 
+        }
+
+    }
+    return msg;
 }
 
+
+void User::insertMessage(Message* msg)
+{
+        map<string, vector<Message*> >::iterator it = _messageBox.find(msg->getAuthor());
+        if (it == _messageBox.end())
+            _messageBox[msg->getAuthor()]; //add key
+        else
+        {
+            _messageBox[msg->getAuthor()].push_back(msg);
+        }
+}
 
 
 string User::getPublicMessages()

@@ -30,7 +30,7 @@ public:
     void insertPublicMessage(Message* msg);
     
     string getMessageFrom(string who);
-    string insertMessageFrom(string who);
+    void insertMessage(Message* msg);
     
     User(const User& orig);
     virtual ~User();

@@ -27,6 +27,8 @@ public:
     bool addUser(string name);
     int getNumberOfUsers();
     
+    //string 
+    
     
     static Manager& getManager();
     static void destroyManager();

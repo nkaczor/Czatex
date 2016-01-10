@@ -55,7 +55,7 @@ int Manager::getNumberOfUsers() {
 }
 
 string Manager::receivePublicMessages(string who) {
-    string messages;
+    string messages = "";
     for (vector<User*>::iterator iterator = _userList->getUsersList()->begin(); iterator != _userList->getUsersList()->end(); iterator++) {
         User* user = *iterator;
         if (user->getName() == who) {

@@ -57,6 +57,10 @@ void* cthread(void *arg) {
             case 1:
             {//GetAllMessages
                 string allMessages = getAllMessages(sentence);
+                //cout<<allMessages<<endl;
+                //string allMessages = "Kaczor; to ja !\nTomys;tomysem jestem";
+                //cout<<allMessages<<endl;
+                write(client->cfd,  allMessages.c_str(), allMessages.length());
                 break;
             }
             case 2:
@@ -181,25 +185,16 @@ int main(int argc, char *argv[]) {
     manager->addUser("Tomys");
     manager->addUser("Kaczor");
 
-
-    //string list = manager->receiveClientList();
-    //cout<<list<<endl;
-
-    //    if(manager->addUser("Kamil"))
-    //    {
-    //        cout<<"dodano nowego usera\n";
-    //    }else
-    //    {
-    //        cout<<"Taki user juz istnieje\n";
-    //    }
-    //    
-    //    cout<<manager->getNumberOfUsers()<<endl;
-
     Message* msg = new Message("Tomys", "To ja tomys!");
     manager->fillPublicMessages(msg);
     manager->fillPublicMessages(new Message("Kaczor", "To ja kaczor"));
     manager->fillPublicMessages(new Message("Kaczor", "To znowu ja kaczor"));
     manager->fillPublicMessages(new Message("Kamil", "Tu owca"));
+    
+    //manager->addUser("Kaczorr");
+    //cout<< manager->receivePublicMessages("Kaczor") <<endl;
+    //manager->
+    
     //    
     //    string mymsg = manager->receivePublicMessages("Kaczor");
     //    cout << mymsg << endl
