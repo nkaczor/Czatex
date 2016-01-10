@@ -16,6 +16,7 @@
 User::User(string name) {
     _name = name;
     _publicMessagesList = new vector <Message*>();
+    _messageBox = new map<string, vector<Message*> >;
 }
 
 string User::getPublicMessages()

@@ -87,6 +87,50 @@ int main(int argc, char *argv[]) {
     //string listOfUsers = userList->getUsers();
     //cout<<listOfUsers<<endl;
 
+    map<string, vector<Message*> > _messageBox;
+    //_messageBox = new map<string, vector<Message*> >;
+       
+    	//map<string, string>::iterator it = _audioFiles->find(audioName);
+	//char* patch = new char[it->second.length() + 1];
+	//strcpy_s(patch, it->second.length() + 1, it->second.c_str());
+    
+    _messageBox["Kaczor"];
+   // _messageBox["Kaczor"];
+    _messageBox["Kaczor"].push_back(new Message("Kaczor","Wiadomosc w mapie1"));
+    _messageBox["Kaczor"].push_back(new Message("Kaczor","Wiadomosc w mapie2"));
+    _messageBox["Kaczor"].push_back(new Message("Kaczor","Wiadomosc w mapie3"));
+    
+    map<string, vector<Message*> >::iterator it = _messageBox.find("Kaczor"); 
+    if (it != _messageBox.end())
+    {
+    //cout<< it->second.at(0)->getMessage();
+    
+    for (vector<Message*>::iterator iterator = it->second.begin(); iterator != it->second.end(); iterator++)
+    {  
+        Message *message = *iterator;
+        cout<<message->getMessage()<<endl;
+    }
+    
+    
+    }else
+    {
+        cout<<"element nie istnieje"<<endl;
+    }
+    //_messageBox->insert(pair<string, vector<Message*> >("Kaczor",));
+    //_messageBox["kaczor"];
+    
+    //_audioFiles->insert(pair<string, string>("exterminate", "Audio/exterminate.mp3"));
+
+//    families["Jones"];
+//    families["Smith"];
+//    families["Doe"];
+//
+//    // add children
+//    families["Jones"].push_back("Jane");
+//    families["Jones"].push_back("Jim");
+
+
+    //testyyy
 
     Manager* manager = &Manager::getManager();
 
@@ -94,10 +138,10 @@ int main(int argc, char *argv[]) {
     manager->addUser("Tomys");
     manager->addUser("Kaczor");
 
-    
+
     //string list = manager->receiveClientList();
     //cout<<list<<endl;
-    
+
     //    if(manager->addUser("Kamil"))
     //    {
     //        cout<<"dodano nowego usera\n";
@@ -108,40 +152,40 @@ int main(int argc, char *argv[]) {
     //    
     //    cout<<manager->getNumberOfUsers()<<endl;
 
-        Message* msg = new Message("Tomys", "To ja tomys!");
-        manager->fillPublicMessages(msg);
-        manager->fillPublicMessages(new Message("Kaczor","To ja kaczor"));
-        manager->fillPublicMessages(new Message("Kaczor","To znowu ja kaczor"));
-        manager->fillPublicMessages(new Message("Kamil","Tu owca"));
+    Message* msg = new Message("Tomys", "To ja tomys!");
+    manager->fillPublicMessages(msg);
+    manager->fillPublicMessages(new Message("Kaczor", "To ja kaczor"));
+    manager->fillPublicMessages(new Message("Kaczor", "To znowu ja kaczor"));
+    manager->fillPublicMessages(new Message("Kamil", "Tu owca"));
     //    
     //    string mymsg = manager->receivePublicMessages("Kaczor");
     //    cout << mymsg << endl
 
-        
-       
-        
-        //testy
-//    char sentence [250] = "2 Kamil Kaczor";
-//    char name [250];
-//    char from [250];
-//    int id;
-//        
-//    sscanf(sentence, "%d %s %s", &id, name, from);  
-//        
-//    cout<<name<<endl<<from<<endl;
-        
-        //testy
-       
+
+
+
+    //testy
+    //    char sentence [250] = "2 Kamil Kaczor";
+    //    char name [250];
+    //    char from [250];
+    //    int id;
+    //        
+    //    sscanf(sentence, "%d %s %s", &id, name, from);  
+    //        
+    //    cout<<name<<endl<<from<<endl;
+
+    //testy
+
 
 
     char sentence [250] = "4 Kaczor";
     char user [250];
     int id;
 
-    sscanf(sentence, "%d %s", &id, user);  
+    sscanf(sentence, "%d %s", &id, user);
     string userName = string(user);
     //cout<<userName<<endl;
-    
+
     switch (id) {
         case 1:
         {//GetAllMessages
@@ -179,12 +223,12 @@ int main(int argc, char *argv[]) {
             clients = getClients(sentence);
             break;
         }
-            
+
 
         default:
             cout << "nieznana komenda" << endl;
     }
-    
+
     //string mymsg = manager->receivePublicMessages("Tomys");
     //cout << mymsg << endl;
 

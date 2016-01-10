@@ -16,6 +16,7 @@
 
 #include <string>
 #include <vector>
+#include <map>
 #include "Message.h"
 using namespace std;
 
@@ -33,6 +34,7 @@ public:
 private:
     string _name;
     vector <Message*> *_publicMessagesList;
+    map<string, vector<Message*> > *_messageBox;
     void removePublicMessages();
 };
 
