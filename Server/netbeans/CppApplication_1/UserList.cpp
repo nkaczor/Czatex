@@ -31,12 +31,13 @@ int UserList::getNumberOfUsers() {
     return _usersList->size();
 }
 
-string UserList::getUsers() {
+string UserList::getUsers(string who) {
     string users = "";
 
     for (vector<User*>::iterator iterator = _usersList->begin(); iterator != _usersList->end(); iterator++) {
         
-       // if ((*iterator)->getName() == currUser->getName())
+        if ((*iterator)->getName() == who)
+            continue;
         
         if (std::distance(iterator, _usersList->end()) - 1 == 0) {
             users = users + (*iterator)->getName();

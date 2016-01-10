@@ -119,7 +119,7 @@ string getClients(char* sentence)
     sscanf(sentence, "%d %s", &id, name);
     
     Manager* manager = &Manager::getManager();
-    listOfClients = manager->receiveClientList();
+    listOfClients = manager->receiveClientList(string(name));
     
     return listOfClients;
 }

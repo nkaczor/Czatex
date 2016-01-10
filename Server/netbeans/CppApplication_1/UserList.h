@@ -23,7 +23,7 @@ class UserList {
 public:
     
     bool insertUser(User* user);
-    string getUsers();
+    string getUsers(string who);
     vector <User*>* getUsersList();
     int getNumberOfUsers();
     

@@ -22,7 +22,7 @@ public:
 
     void fillPublicMessages(Message *msg);
     string receivePublicMessages(string who);
-    string receiveClientList();
+    string receiveClientList(string who);
     void leave(string name);
     bool addUser(string name);
     int getNumberOfUsers();

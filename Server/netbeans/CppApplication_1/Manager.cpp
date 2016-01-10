@@ -80,8 +80,8 @@ void Manager::fillPublicMessages(Message *msg) {
     }
 }
 
-string Manager::receiveClientList() {
-    return _userList->getUsers();
+string Manager::receiveClientList(string who) {
+    return _userList->getUsers(who);
 }
 
 Manager::~Manager() {
