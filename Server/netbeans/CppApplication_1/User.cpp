@@ -54,7 +54,7 @@ void User::insertMessage(Message* msg)
 
 string User::getPublicMessages()
 {
-    string messages;
+    string messages="1\n";
     
     for (vector<Message*>::iterator iterator = _publicMessagesList->begin(); iterator != _publicMessagesList->end(); iterator++)
     {  
@@ -68,6 +68,9 @@ string User::getPublicMessages()
             messages = messages +(*iterator)->getAuthor()+";" + (*iterator)->getMessage() + "\n";
         }  
     }
+    
+    if(messages.length()<3)
+        messages="0\n";
     
     removePublicMessages();
     return messages;

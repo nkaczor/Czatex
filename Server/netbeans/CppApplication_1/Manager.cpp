@@ -27,6 +27,27 @@ Manager::Manager() {
 Manager::Manager(const Manager& orig) {
 }
 
+string Manager::receiveMessagesFrom(string who, string from) {
+    
+    string messages;
+    
+    for (vector<User*>::iterator iterator = _userList->getUsersList()->begin(); iterator != _userList->getUsersList()->end(); iterator++) {
+        User* user = *iterator;
+        if (user->getName() == who) {
+            messages = user->getMessageFrom(from);
+            break;
+        }
+    }
+
+    return messages;
+}
+
+ void Manager::insertMessageFrom(string who)
+ {
+     
+ }
+
+
 void Manager::leave(string name) {
 
     for (vector<User*>::iterator iterator = _userList->getUsersList()->begin(); iterator != _userList->getUsersList()->end(); /**/) {

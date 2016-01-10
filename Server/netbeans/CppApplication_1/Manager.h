@@ -27,7 +27,8 @@ public:
     bool addUser(string name);
     int getNumberOfUsers();
     
-    //string 
+    string receiveMessagesFrom(string who,string from); 
+    void insertMessageFrom(string who);
     
     
     static Manager& getManager();

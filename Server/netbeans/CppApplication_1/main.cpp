@@ -25,7 +25,7 @@
 
 //char buffer[250] = "Natalia Kaczor \n";
 //char readbuffer[250];
-char sentence [250];
+
 
 using namespace std;
 
@@ -36,20 +36,23 @@ struct cln {
 
 void* cthread(void *arg) {
     struct cln *client = (struct cln*) arg;
-
-
+    char sentence [250];
+    
+    //memset(sentence, 0, sizeof(sentence));
+    
     printf("Polaczono z serwerem\n");
     int id = 0;
     while (id != 4) {//connection
-
+        memset(sentence, 0, sizeof(sentence));
         read(client->cfd, sentence, sizeof (sentence));
         //char sentence [250] = "4 Kaczor";
         char user [250];
         
-
+        cout<<"sentence: "<<sentence<<endl;
+        
         sscanf(sentence, "%d %s", &id, user);
         string userName = string(user);
-        //cout<<userName<<endl;
+        cout<<"Login: "<<userName<<endl;
 
         cout << "instrukcja: " << id << endl;
 
@@ -60,8 +63,14 @@ void* cthread(void *arg) {
                 //cout<<allMessages<<endl;
                 //string allMessages = "Kaczor; to ja !\nTomys;tomysem jestem";
                 //cout<<allMessages<<endl;
+                cout<<allMessages<<endl;
+                cout<<"przed wyslaniem all msg"<<endl;
                 write(client->cfd,  allMessages.c_str(), allMessages.length());
-                break;
+                cout<<"o wyslaniu all msg"<<endl;
+                 //Manager* manager = &Manager::getManager();
+                 //manager->fillPublicMessages(new Message("Kaczor", "To ja kaczor"));
+                
+                 break;
             }
             case 2:
             {//GetMessagesFrom
@@ -82,6 +91,7 @@ void* cthread(void *arg) {
             }
             case 5:
             {//Send message to all
+                cout<<"Od klienta: "<<sentence<<endl;
                 sendMessageToAll(sentence);
                 break;
             }
@@ -191,7 +201,14 @@ int main(int argc, char *argv[]) {
     manager->fillPublicMessages(new Message("Kaczor", "To znowu ja kaczor"));
     manager->fillPublicMessages(new Message("Kamil", "Tu owca"));
     
+    //manager->fillPublicMessages(new Message("Tomys", "TTTT"));
+    //sendMessageToAll("5 Tomys TTTEST");
+    
+   // cout<< manager->receivePublicMessages("Kaczor") <<endl;
+    
     //manager->addUser("Kaczorr");
+   // cout<< manager->receivePublicMessages("Kaczor") <<endl;
+    //cout<<"wrr"<<endl;
     //cout<< manager->receivePublicMessages("Kaczor") <<endl;
     //manager->
     
