@@ -18,7 +18,7 @@
         <TextBox x:Name="messageTextBox" HorizontalAlignment="Left" Height="43" Margin="24,292,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="359" Grid.Row="1" Grid.ColumnSpan="2"/>
         <Button x:Name="sendButton" Content="Wyślij" HorizontalAlignment="Left" Margin="67.763,292,0,0" VerticalAlignment="Top" Width="85" Height="43" Grid.Row="1" Background="#FF2B0868" Foreground="#FFF7E9E9" Click="sendButton_Click" Grid.Column="1"/>
         <Label x:Name="friendLabel" Content="Czat publiczny" HorizontalAlignment="Left" Margin="24,10,0,0" VerticalAlignment="Top" Width="460" FontSize="18.667" Grid.ColumnSpan="2"/>
-        <ListBox x:Name="clientsList" HorizontalAlignment="Left" Height="334" Margin="169.763,0,0,0" VerticalAlignment="Top" Width="123" Grid.Row="1" Grid.Column="1">
+        <ListBox x:Name="clientsList" HorizontalAlignment="Left" Height="334" Margin="169.763,0,0,0" VerticalAlignment="Top" Width="123" Grid.Row="1" Grid.Column="1" SelectionChanged="clientsList_SelectionChanged">
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <Grid>
@@ -48,6 +48,6 @@
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>
-        <Button x:Name="publicButton" Content="Publiczny" HorizontalAlignment="Left" Margin="169.763,14,0,0" VerticalAlignment="Top" Width="123" Height="31" Background="#FF2B0868" Foreground="#FFF7E9E9" Grid.Column="1"/>
+        <Button x:Name="publicButton" Content="Publiczny" HorizontalAlignment="Left" Margin="169.763,14,0,0" VerticalAlignment="Top" Width="123" Height="31" Background="#FF2B0868" Foreground="#FFF7E9E9" Grid.Column="1" Click="publicButton_Click"/>
     </Grid>
 </Window>

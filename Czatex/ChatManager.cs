@@ -9,6 +9,7 @@ namespace Czatex
 {
     public class ChatManager
     {
+        
         public int Join(string login) {
             Console.WriteLine(login);
             cHandler.SendData("3 "+ login);
@@ -56,7 +57,6 @@ namespace Czatex
         }
         public void SendMessageToAll(string myLogin, string message)
         {
-            Console.WriteLine("5 " + myLogin + " " + message);
             cHandler.SendData("5 " + myLogin + " " + message);
         }
 
@@ -64,7 +64,7 @@ namespace Czatex
         public List<Message> GetMessagesFrom(string myLogin, string from)
         {
             List<Message> messages = new List<Message>();
-            cHandler.SendData("2 " + myLogin+" "+from);
+            cHandler.SendData("2 " + myLogin + " " + from);
             string response = cHandler.Receive();
             string[] messagesResponse = response.Split('\n');
             if (messagesResponse[0] == "1")
@@ -80,10 +80,9 @@ namespace Czatex
             }
             return messages;
         }
-        public void SendMessageToAll(string myLogin, string message)
+        public void SendMessageTo(string myLogin, string to, string message)
         {
-            Console.WriteLine("5 " + myLogin + " " + message);
-            cHandler.SendData("5 " + myLogin + " " + message);
+            cHandler.SendData("5 " + myLogin + " " + to + " " + message);
         }
         private ConnectionHandler cHandler;
         public ChatManager() {

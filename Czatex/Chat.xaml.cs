@@ -23,6 +23,8 @@ namespace Czatex
     {
         List<Message> messages = new List<Message>();
         List<Client> clients = new List<Client>();
+        private Boolean isPublic = true;
+        private String selectedUser = "";
         private ChatManager chatManager;
         private string myLogin;
         private void setClientsTimer() {
@@ -56,7 +58,7 @@ namespace Czatex
             {
  
             clients = chatManager.GetAllClients(myLogin);
-                Console.WriteLine(clients.Count);
+               
             clientsList.ItemsSource = clients;
             clientsList.Items.Refresh();
                       
@@ -67,7 +69,10 @@ namespace Czatex
             this.Dispatcher.Invoke((Action)(() =>
             {
 
-                messages.AddRange(chatManager.GetAllMessages(myLogin));
+                if(isPublic)
+                    messages.AddRange(chatManager.GetAllMessages(myLogin));
+                else
+                    messages.AddRange(chatManager.GetMessagesFrom(myLogin, selectedUser));
                 messagesList.ItemsSource = messages;
                 messagesList.Items.Refresh();
 
@@ -86,11 +91,32 @@ namespace Czatex
 
         private void sendButton_Click(object sender, RoutedEventArgs e)
         {
-            chatManager.SendMessageToAll(myLogin, messageTextBox.Text);
+            if(isPublic)
+                chatManager.SendMessageToAll(myLogin, messageTextBox.Text);
+            else
+                chatManager.SendMessageTo(myLogin, selectedUser, messageTextBox.Text);
             messages.Add(new Message(messageTextBox.Text, myLogin));
             messagesList.Items.Refresh();
             messageTextBox.Text = "";
 
+        }
+
+        private void clientsList_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (e.AddedItems.Count > 0)
+            {
+                selectedUser = ((Client)e.AddedItems[0]).Name;
+                messages.Clear();
+                isPublic = false;
+            }
+
+        }
+
+        private void publicButton_Click(object sender, RoutedEventArgs e)
+        {
+            selectedUser = "";
+            messages.Clear();
+            isPublic = true;
         }
     }
 }
