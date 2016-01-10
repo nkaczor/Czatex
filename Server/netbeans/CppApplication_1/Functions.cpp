@@ -93,7 +93,7 @@ void sendMessageToAll(char* sentence)
 }
 
 
-void sendMessageTo(char* sentence)
+string sendMessageTo(char* sentence)
 {
     char name [250];
     char to [250];
@@ -109,7 +109,9 @@ void sendMessageTo(char* sentence)
     cout<<"Wysylam wiadomosc: "<<string(msg)<<endl;
 
     Manager* manager = &Manager::getManager();
-    manager->insertMessageFrom(new Message(string(name),string(msg)),string(to));
+    string flag;
+    flag = manager->insertMessageFrom(new Message(string(name),string(msg)),string(to));
+    return flag;
     //cout<< "not yet - sendMessageTo";
 }
 

@@ -100,7 +100,9 @@ void* cthread(void *arg) {
             case 6:
             {//Send message to
                 cout<<"SEND prywatna FROM"<<userName<<endl;
-                sendMessageTo(sentence);
+                string status;
+                status = sendMessageTo(sentence);
+                write(client->cfd, status.c_str(), status.length());
                 break;
             }
             case 7:

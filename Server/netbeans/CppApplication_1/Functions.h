@@ -27,7 +27,7 @@ string getMessagesFrom(char* sentence);
 string join(char* sentence);
 void leave(char* sentence);
 void sendMessageToAll(char* sentence);
-void sendMessageTo(char* sentence);
+string sendMessageTo(char* sentence);
 string getClients(char* sentence);
 
 #endif /* FUNCTIONS_H */

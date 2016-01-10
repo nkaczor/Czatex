@@ -28,9 +28,7 @@ string User::getMessageFrom(string who)
     string msg;
     map<string, vector<Message*> >::iterator it = _messageBox.find(who);
     
-    if (it == _messageBox.end())
-        msg = "";
-    else
+    if (it != _messageBox.end())
     {
         msg = "1\n";
         for (vector<Message*>::iterator iterator = it->second.begin(); iterator != it->second.end(); iterator++) {
@@ -39,10 +37,17 @@ string User::getMessageFrom(string who)
                 msg = msg +(*iterator)->getMessage()+";"; 
         }
         removePrivateMessages(who);
+        
+        if(msg.length()<3)
+            msg="0\n";
+    }else
+    {//Nie ma takiego usera
+        msg = "2\n";
     }
     
-    if(msg.length()<3)
-        msg="0\n";
+    
+    
+    
     
     return msg;
 }
