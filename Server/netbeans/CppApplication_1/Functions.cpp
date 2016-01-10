@@ -50,7 +50,7 @@ string getMessagesFrom(char* sentence) {
     return "not yet - getMessagesFrom";
 }
 
-int join(char* sentence) {
+string join(char* sentence) {
     char name [250];
     int id;
 
@@ -58,9 +58,9 @@ int join(char* sentence) {
 
     Manager* manager = &Manager::getManager();
     if (manager->addUser(name))
-        return 1;
+        return "1";
     else 
-        return 2;
+        return "2";
 }
 
 void leave(char* sentence)

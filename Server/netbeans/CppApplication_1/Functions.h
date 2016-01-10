@@ -24,7 +24,7 @@ struct sockaddr_in fillSocketAddress(int port);
 
 string getAllMessages(char* sentence);
 string getMessagesFrom(char* sentence);
-int join(char* sentence);
+string join(char* sentence);
 void leave(char* sentence);
 void sendMessageToAll(char* sentence);
 void sendMessageTo(char* sentence);

@@ -13,11 +13,15 @@
 #include <cstdio>
 #include <unistd.h>
 #include <string.h>
+#include <string>
 
 #include "Functions.h"
 #include "UserList.h"
 #include "Manager.h"
 
+
+#include <cstdio>
+#include <cstdlib>
 
 //char buffer[250] = "Natalia Kaczor \n";
 //char readbuffer[250];
@@ -62,9 +66,9 @@ void* cthread(void *arg) {
             }
             case 3:
             {//Join
-                int flag = join(sentence);
-                cout << "dodano" << endl;
-                write(client->cfd, "1\n", 2);
+                string flag = join(sentence);
+                //cout<<"dodano usera"<<endl;
+                write(client->cfd,  flag.c_str(), flag.length());
                 break;
             }
             case 4:
