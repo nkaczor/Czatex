@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Timers;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -20,38 +21,73 @@ namespace Czatex
     /// </summary>
     public partial class Chat : Window
     {
-        private Client natalia, kamil, duka, sebastian;
         List<Message> messages = new List<Message>();
+        List<Client> clients = new List<Client>();
         private ChatManager chatManager;
         private string myLogin;
+        private void setClientsTimer() {
+            Timer tmrClients = new Timer();
+            tmrClients.Interval = 1000; // 1 second
+            
+            tmrClients.Elapsed += getClients;
+         
+            tmrClients.AutoReset = true;
+            tmrClients.Enabled = true;
+        }
+        private void setMessagesTimer()
+        {
+            Timer tmrMessages = new Timer();
+            tmrMessages.Interval = 1000; // 1 second
+
+            tmrMessages.Elapsed += getMessages;
+
+            tmrMessages.AutoReset = true;
+            tmrMessages.Enabled = true;
+        }
+
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            chatManager.Leave(myLogin);
+        }
+
+        private void getClients(Object source, ElapsedEventArgs e)
+        {
+            this.Dispatcher.Invoke((Action)(() =>
+            {
+ 
+            clients = chatManager.GetAllClients(myLogin);
+                Console.WriteLine(clients.Count);
+            clientsList.ItemsSource = clients;
+            clientsList.Items.Refresh();
+                      
+             }));
+        }
+        private void getMessages(Object source, ElapsedEventArgs e)
+        {
+            this.Dispatcher.Invoke((Action)(() =>
+            {
+
+                messages.AddRange(chatManager.GetAllMessages(myLogin));
+                messagesList.ItemsSource = messages;
+                messagesList.Items.Refresh();
+
+            }));
+        }
         public Chat(ChatManager chatManager, string myLogin)
         {
             this.chatManager = chatManager;
             this.myLogin = myLogin;
             InitializeComponent();
-            List<Client> clients = chatManager.GetAllClients(myLogin);
-           
-            natalia = new Client("Natalia");
-            kamil = new Client("Kamil");
-            duka = new Client("Duka");
-            sebastian = new Client("Sebastian");
-
-           
-            clientsList.ItemsSource = clients;
-            messagesList.ItemsSource = messages;
-            messages.Add(new Message("Co Tam Duka porabiasz", natalia));
-            messages.Add(new Message("Wpierdol?", duka));
-            messages.Add(new Message("JEDZIEEEEEMY!!!", kamil));
-            messages.Add(new Message("O TY", natalia));
-            messages.Add(new Message("ggdgfdfgdfgdg fdff  df dsf ds fds f sdf sd fd sf dsf sd f sdf sd f sdf sd f sdf  sdf sd f sdf sd fs df s f sf  fs", sebastian));
-           
+            setClientsTimer();
+            setMessagesTimer();
+          
 
         }
 
         private void sendButton_Click(object sender, RoutedEventArgs e)
         {
-            
-            messages.Add(new Message(messageTextBox.Text, kamil));
+            chatManager.SendMessageToAll(myLogin, messageTextBox.Text);
+            messages.Add(new Message(messageTextBox.Text, myLogin));
             messagesList.Items.Refresh();
             messageTextBox.Text = "";
 
