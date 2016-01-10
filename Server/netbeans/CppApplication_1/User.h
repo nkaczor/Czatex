@@ -29,12 +29,13 @@ public:
     string getPublicMessages();
     void insertPublicMessage(Message* msg);
     
+    
     User(const User& orig);
     virtual ~User();
 private:
     string _name;
     vector <Message*> *_publicMessagesList;
-    map<string, vector<Message*> > *_messageBox;
+    map<string, vector<Message*> > _messageBox;
     void removePublicMessages();
 };
 

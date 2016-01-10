@@ -86,48 +86,48 @@ int main(int argc, char *argv[]) {
 
     //string listOfUsers = userList->getUsers();
     //cout<<listOfUsers<<endl;
-
-    map<string, vector<Message*> > _messageBox;
-    //_messageBox = new map<string, vector<Message*> >;
-       
-    	//map<string, string>::iterator it = _audioFiles->find(audioName);
-	//char* patch = new char[it->second.length() + 1];
-	//strcpy_s(patch, it->second.length() + 1, it->second.c_str());
-    
-    _messageBox["Kaczor"];
-   // _messageBox["Kaczor"];
-    _messageBox["Kaczor"].push_back(new Message("Kaczor","Wiadomosc w mapie1"));
-    _messageBox["Kaczor"].push_back(new Message("Kaczor","Wiadomosc w mapie2"));
-    _messageBox["Kaczor"].push_back(new Message("Kaczor","Wiadomosc w mapie3"));
-    
-    map<string, vector<Message*> >::iterator it = _messageBox.find("Kaczor"); 
-    if (it != _messageBox.end())
-    {
-    //cout<< it->second.at(0)->getMessage();
-    
-    for (vector<Message*>::iterator iterator = it->second.begin(); iterator != it->second.end(); iterator++)
-    {  
-        Message *message = *iterator;
-        cout<<message->getMessage()<<endl;
-    }
-    
-    
-    }else
-    {
-        cout<<"element nie istnieje"<<endl;
-    }
-    //_messageBox->insert(pair<string, vector<Message*> >("Kaczor",));
-    //_messageBox["kaczor"];
-    
-    //_audioFiles->insert(pair<string, string>("exterminate", "Audio/exterminate.mp3"));
-
-//    families["Jones"];
-//    families["Smith"];
-//    families["Doe"];
 //
-//    // add children
-//    families["Jones"].push_back("Jane");
-//    families["Jones"].push_back("Jim");
+//    map<string, vector<Message*> > _messageBox;
+//    //_messageBox = new map<string, vector<Message*> >;
+//
+//    //map<string, string>::iterator it = _audioFiles->find(audioName);
+//    //char* patch = new char[it->second.length() + 1];
+//    //strcpy_s(patch, it->second.length() + 1, it->second.c_str());
+//
+//    map<string, vector<Message*> >::iterator it2 = _messageBox.find("Kaczor");
+//    if (it2 == _messageBox.end())
+//        cout<<"Nie ma kaczora";
+//    
+//    _messageBox["Kaczor"];
+//    // _messageBox["Kaczor"];
+//    _messageBox["Kaczor"].push_back(new Message("Kaczor", "Wiadomosc w mapie1"));
+//    _messageBox["Kaczor"].push_back(new Message("Kaczor", "Wiadomosc w mapie2"));
+//    _messageBox["Kaczor"].push_back(new Message("Kaczor", "Wiadomosc w mapie3"));
+//
+//    map<string, vector<Message*> >::iterator it = _messageBox.find("Kaczor");
+//    if (it != _messageBox.end()) {
+//        //cout<< it->second.at(0)->getMessage();
+//
+//        for (vector<Message*>::iterator iterator = it->second.begin(); iterator != it->second.end(); iterator++) {
+//            Message *message = *iterator;
+//            cout << message->getMessage() << endl;
+//        }
+//
+//    } else {
+//        cout << "element nie istnieje" << endl;
+//    }
+//    //_messageBox->insert(pair<string, vector<Message*> >("Kaczor",));
+//    //_messageBox["kaczor"];
+//
+//    //_audioFiles->insert(pair<string, string>("exterminate", "Audio/exterminate.mp3"));
+//
+//    //    families["Jones"];
+//    //    families["Smith"];
+//    //    families["Doe"];
+//    //
+//    //    // add children
+//    //    families["Jones"].push_back("Jane");
+//    //    families["Jones"].push_back("Jim");
 
 
     //testyyy
