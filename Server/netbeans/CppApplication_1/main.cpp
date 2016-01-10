@@ -75,6 +75,8 @@ void* cthread(void *arg) {
             case 2:
             {//GetMessagesFrom
                 string messages = getMessagesFrom(sentence);
+                cout<<"GET Wiadomosc prywatna dla "<<userName<<" "<<messages<<endl;
+                write(client->cfd,  messages.c_str(), messages.length());
                 break;
             }
             case 3:
@@ -97,6 +99,7 @@ void* cthread(void *arg) {
             }
             case 6:
             {//Send message to
+                cout<<"SEND prywatna FROM"<<userName<<endl;
                 sendMessageTo(sentence);
                 break;
             }
@@ -200,6 +203,15 @@ int main(int argc, char *argv[]) {
     manager->fillPublicMessages(new Message("Kaczor", "To ja kaczor"));
     manager->fillPublicMessages(new Message("Kaczor", "To znowu ja kaczor"));
     manager->fillPublicMessages(new Message("Kamil", "Tu owca"));
+    
+    
+    manager->insertMessageFrom(new Message("Kamil","siema tomys tu owca"),"Tomys");
+    manager->insertMessageFrom(new Message("Kamil","siema tomys tu owca2"),"Tomys");
+    
+//    cout<<manager->receiveMessagesFrom("Tomys","Kamil")<<endl;
+//    cout<<"wrr"<<endl;
+//    cout<<manager->receiveMessagesFrom("Tomys","Kamil")<<endl;
+//    cout<<"asdas"<<endl;
     
     //manager->fillPublicMessages(new Message("Tomys", "TTTT"));
     //sendMessageToAll("5 Tomys TTTEST");

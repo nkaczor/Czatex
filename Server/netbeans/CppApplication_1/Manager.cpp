@@ -38,14 +38,23 @@ string Manager::receiveMessagesFrom(string who, string from) {
             break;
         }
     }
-
+    
     return messages;
 }
 
- void Manager::insertMessageFrom(string who)
+ void Manager::insertMessageFrom(Message* msg,string to)
  {
-     
+     for (vector<User*>::iterator iterator = _userList->getUsersList()->begin(); iterator != _userList->getUsersList()->end(); iterator++) {
+        User* user = *iterator;
+        if (user->getName() == to) {
+            //cout<<"inserting"<<endl;
+            user->insertMessage(msg);
+            break;
+        }
+    }
  }
+ 
+
 
 
 void Manager::leave(string name) {

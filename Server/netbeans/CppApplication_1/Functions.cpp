@@ -45,9 +45,11 @@ string getMessagesFrom(char* sentence) {
 
     Manager* manager = &Manager::getManager();
 
+    string messages;
+    messages = manager->receiveMessagesFrom(string(name),string(from));
     //cout<<string(name)<<endl<<string(from)<<endl;
 
-    return "not yet - getMessagesFrom";
+    return messages;
 }
 
 string join(char* sentence) {
@@ -103,10 +105,12 @@ void sendMessageTo(char* sentence)
 //    cout<<"from: "<<name<<endl;
 //    cout<<"to: "<<to<<endl;
 //    cout<<"msg: "<<msg<<endl;
+    
+    cout<<"Wysylam wiadomosc: "<<string(msg)<<endl;
 
     Manager* manager = &Manager::getManager();
-    
-    cout<< "not yet - sendMessageTo";
+    manager->insertMessageFrom(new Message(string(name),string(msg)),string(to));
+    //cout<< "not yet - sendMessageTo";
 }
 
 

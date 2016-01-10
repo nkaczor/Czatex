@@ -28,7 +28,7 @@ public:
     int getNumberOfUsers();
     
     string receiveMessagesFrom(string who,string from); 
-    void insertMessageFrom(string who);
+    void insertMessageFrom(Message* msg,string to);
     
     
     static Manager& getManager();
@@ -36,6 +36,7 @@ public:
 private:
     
     UserList *_userList;
+    //
     
     Manager();
     Manager(const Manager& orig);

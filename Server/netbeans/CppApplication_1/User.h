@@ -15,6 +15,7 @@
 #define USER_H
 
 #include <string>
+#include <iostream>
 #include <vector>
 #include <map>
 #include "Message.h"
@@ -39,6 +40,7 @@ private:
     vector <Message*> *_publicMessagesList;
     map<string, vector<Message*> > _messageBox;
     void removePublicMessages();
+    void removePrivateMessages(string from);
 };
 
 

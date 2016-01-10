@@ -13,6 +13,8 @@
 
 #include "User.h"
 
+//using namespace std;
+
 User::User(string name) {
     _name = name;
     _publicMessagesList = new vector <Message*>();
@@ -22,6 +24,7 @@ User::User(string name) {
 
 string User::getMessageFrom(string who)
 {
+    //string msg = "1\n";
     string msg;
     map<string, vector<Message*> >::iterator it = _messageBox.find(who);
     
@@ -29,27 +32,44 @@ string User::getMessageFrom(string who)
         msg = "";
     else
     {
+        msg = "1\n";
         for (vector<Message*>::iterator iterator = it->second.begin(); iterator != it->second.end(); iterator++) {
                 Message *message = *iterator;
                 //cout << message->getMessage() << endl;
-                msg = msg +(*iterator)->getMessage()+"\n"; 
+                msg = msg +(*iterator)->getMessage()+";"; 
         }
-
+        removePrivateMessages(who);
     }
+    
+    if(msg.length()<3)
+        msg="0\n";
+    
     return msg;
 }
 
 
 void User::insertMessage(Message* msg)
 {
+    
+    //cout<<"inserting"<<endl;
+    
         map<string, vector<Message*> >::iterator it = _messageBox.find(msg->getAuthor());
         if (it == _messageBox.end())
-            _messageBox[msg->getAuthor()]; //add key
-        else
         {
-            _messageBox[msg->getAuthor()].push_back(msg);
+             //cout<<"dodaje klucz"<<endl;
+            _messageBox[msg->getAuthor()]; //add key
         }
+
+        _messageBox[msg->getAuthor()].push_back(msg);
+        
 }
+
+
+ void User::removePrivateMessages(string from)
+ {
+      //map<string, vector<Message*> >::iterator it = _messageBox.find(from);
+      _messageBox[from].clear();
+ }
 
 
 string User::getPublicMessages()
