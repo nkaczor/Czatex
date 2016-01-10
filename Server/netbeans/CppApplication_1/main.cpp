@@ -19,9 +19,9 @@
 #include "Manager.h"
 
 
-char buffer[250] = "Natalia Kaczor \n";
-char readbuffer[250];
-
+//char buffer[250] = "Natalia Kaczor \n";
+//char readbuffer[250];
+char sentence [250];
 
 using namespace std;
 
@@ -33,37 +33,76 @@ struct cln {
 void* cthread(void *arg) {
     struct cln *client = (struct cln*) arg;
 
+
     printf("Polaczono z serwerem\n");
+    int id = 0;
+    while (id != 4) {//connection
+
+        read(client->cfd, sentence, sizeof (sentence));
+        //char sentence [250] = "4 Kaczor";
+        char user [250];
+        
+
+        sscanf(sentence, "%d %s", &id, user);
+        string userName = string(user);
+        //cout<<userName<<endl;
+
+        cout << "instrukcja: " << id << endl;
+
+        switch (id) {
+            case 1:
+            {//GetAllMessages
+                string allMessages = getAllMessages(sentence);
+                break;
+            }
+            case 2:
+            {//GetMessagesFrom
+                string messages = getMessagesFrom(sentence);
+                break;
+            }
+            case 3:
+            {//Join
+                int flag = join(sentence);
+                cout << "dodano" << endl;
+                write(client->cfd, "1\n", 2);
+                break;
+            }
+            case 4:
+            {//Leave
+                leave(sentence);
+                break;
+            }
+            case 5:
+            {//Send message to all
+                sendMessageToAll(sentence);
+                break;
+            }
+            case 6:
+            {//Send message to
+                sendMessageTo(sentence);
+                break;
+            }
+            case 7:
+            {//GetClients
+                string clients;
+                clients = getClients(sentence);
+                write(client->cfd, clients.c_str(), clients.length());
+                break;
+            }
 
 
-    read(client->cfd, readbuffer, sizeof (readbuffer));
-
-    printf("char %s\n", readbuffer);
-    string msg = string(readbuffer);
-
-    cout << msg << "rututu" << endl;
-    //Manager* manager =&Manager::getManager();
-
-    //printf("%s\n",buf);
-
-    //manager->addUser("Kamil");
-
-    write(client->cfd, "1\n", 2);
+            default:
+                cout << "nieznana komenda" << endl;
+        }
+    }
 
 
-    //read(client->cfd, readbuffer,sizeof(readbuffer));
-
-    //printf("%s\n",readbuffer);
-    //write(client->cfd, "Helyo world!\n", 13);
-
-    //if (strncmp(readbuffer, "117189",6)==0) write(client->cfd,buffer,250);
-    //else write(client->cfd,"Unknown",10);
-
-    //write(client->cfd,"Koniec wiadomosci!\n",20);
-    //write(client->cfd,"asd\n",4);
-
-    //read(client->cfd, readbuffer, sizeof(readbuffer));
-    //printf("%s\n",readbuffer);
+    //    printf("Polaczono z serwerem\n");
+    //    read(client->cfd, readbuffer, sizeof (readbuffer));
+    //    printf("char %s\n", readbuffer);
+    //    string msg = string(readbuffer);
+    //    cout << msg << "rututu" << endl;
+    //    write(client->cfd, "1\n", 2);
 
 
     close(client->cfd);
@@ -86,48 +125,48 @@ int main(int argc, char *argv[]) {
 
     //string listOfUsers = userList->getUsers();
     //cout<<listOfUsers<<endl;
-//
-//    map<string, vector<Message*> > _messageBox;
-//    //_messageBox = new map<string, vector<Message*> >;
-//
-//    //map<string, string>::iterator it = _audioFiles->find(audioName);
-//    //char* patch = new char[it->second.length() + 1];
-//    //strcpy_s(patch, it->second.length() + 1, it->second.c_str());
-//
-//    map<string, vector<Message*> >::iterator it2 = _messageBox.find("Kaczor");
-//    if (it2 == _messageBox.end())
-//        cout<<"Nie ma kaczora";
-//    
-//    _messageBox["Kaczor"];
-//    // _messageBox["Kaczor"];
-//    _messageBox["Kaczor"].push_back(new Message("Kaczor", "Wiadomosc w mapie1"));
-//    _messageBox["Kaczor"].push_back(new Message("Kaczor", "Wiadomosc w mapie2"));
-//    _messageBox["Kaczor"].push_back(new Message("Kaczor", "Wiadomosc w mapie3"));
-//
-//    map<string, vector<Message*> >::iterator it = _messageBox.find("Kaczor");
-//    if (it != _messageBox.end()) {
-//        //cout<< it->second.at(0)->getMessage();
-//
-//        for (vector<Message*>::iterator iterator = it->second.begin(); iterator != it->second.end(); iterator++) {
-//            Message *message = *iterator;
-//            cout << message->getMessage() << endl;
-//        }
-//
-//    } else {
-//        cout << "element nie istnieje" << endl;
-//    }
-//    //_messageBox->insert(pair<string, vector<Message*> >("Kaczor",));
-//    //_messageBox["kaczor"];
-//
-//    //_audioFiles->insert(pair<string, string>("exterminate", "Audio/exterminate.mp3"));
-//
-//    //    families["Jones"];
-//    //    families["Smith"];
-//    //    families["Doe"];
-//    //
-//    //    // add children
-//    //    families["Jones"].push_back("Jane");
-//    //    families["Jones"].push_back("Jim");
+    //
+    //    map<string, vector<Message*> > _messageBox;
+    //    //_messageBox = new map<string, vector<Message*> >;
+    //
+    //    //map<string, string>::iterator it = _audioFiles->find(audioName);
+    //    //char* patch = new char[it->second.length() + 1];
+    //    //strcpy_s(patch, it->second.length() + 1, it->second.c_str());
+    //
+    //    map<string, vector<Message*> >::iterator it2 = _messageBox.find("Kaczor");
+    //    if (it2 == _messageBox.end())
+    //        cout<<"Nie ma kaczora";
+    //    
+    //    _messageBox["Kaczor"];
+    //    // _messageBox["Kaczor"];
+    //    _messageBox["Kaczor"].push_back(new Message("Kaczor", "Wiadomosc w mapie1"));
+    //    _messageBox["Kaczor"].push_back(new Message("Kaczor", "Wiadomosc w mapie2"));
+    //    _messageBox["Kaczor"].push_back(new Message("Kaczor", "Wiadomosc w mapie3"));
+    //
+    //    map<string, vector<Message*> >::iterator it = _messageBox.find("Kaczor");
+    //    if (it != _messageBox.end()) {
+    //        //cout<< it->second.at(0)->getMessage();
+    //
+    //        for (vector<Message*>::iterator iterator = it->second.begin(); iterator != it->second.end(); iterator++) {
+    //            Message *message = *iterator;
+    //            cout << message->getMessage() << endl;
+    //        }
+    //
+    //    } else {
+    //        cout << "element nie istnieje" << endl;
+    //    }
+    //    //_messageBox->insert(pair<string, vector<Message*> >("Kaczor",));
+    //    //_messageBox["kaczor"];
+    //
+    //    //_audioFiles->insert(pair<string, string>("exterminate", "Audio/exterminate.mp3"));
+    //
+    //    //    families["Jones"];
+    //    //    families["Smith"];
+    //    //    families["Doe"];
+    //    //
+    //    //    // add children
+    //    //    families["Jones"].push_back("Jane");
+    //    //    families["Jones"].push_back("Jim");
 
 
     //testyyy
@@ -162,8 +201,8 @@ int main(int argc, char *argv[]) {
     //    cout << mymsg << endl
 
 
-
-
+    //cout<<manager->receivePublicMessages("Tomys")<<endl;
+    //cout<<manager->receiveClientList()<<endl;
     //testy
     //    char sentence [250] = "2 Kamil Kaczor";
     //    char name [250];
@@ -178,88 +217,88 @@ int main(int argc, char *argv[]) {
 
 
 
-    char sentence [250] = "4 Kaczor";
-    char user [250];
-    int id;
-
-    sscanf(sentence, "%d %s", &id, user);
-    string userName = string(user);
-    //cout<<userName<<endl;
-
-    switch (id) {
-        case 1:
-        {//GetAllMessages
-            string allMessages = getAllMessages(sentence);
-            break;
-        }
-        case 2:
-        {//GetMessagesFrom
-            string messages = getMessagesFrom(sentence);
-            break;
-        }
-        case 3:
-        {//Join
-            int flag = join(sentence);
-            break;
-        }
-        case 4:
-        {//Leave
-            leave(sentence);
-            break;
-        }
-        case 5:
-        {//Send message to all
-            sendMessageToAll(sentence);
-            break;
-        }
-        case 6:
-        {//Send message to
-            sendMessageTo(sentence);
-            break;
-        }
-        case 7:
-        {//GetClients
-            string clients;
-            clients = getClients(sentence);
-            break;
-        }
-
-
-        default:
-            cout << "nieznana komenda" << endl;
-    }
+    //    char sentence [250] = "4 Kaczor";
+    //    char user [250];
+    //    int id;
+    //
+    //    sscanf(sentence, "%d %s", &id, user);
+    //    string userName = string(user);
+    //    //cout<<userName<<endl;
+    //
+    //    switch (id) {
+    //        case 1:
+    //        {//GetAllMessages
+    //            string allMessages = getAllMessages(sentence);
+    //            break;
+    //        }
+    //        case 2:
+    //        {//GetMessagesFrom
+    //            string messages = getMessagesFrom(sentence);
+    //            break;
+    //        }
+    //        case 3:
+    //        {//Join
+    //            int flag = join(sentence);
+    //            break;
+    //        }
+    //        case 4:
+    //        {//Leave
+    //            leave(sentence);
+    //            break;
+    //        }
+    //        case 5:
+    //        {//Send message to all
+    //            sendMessageToAll(sentence);
+    //            break;
+    //        }
+    //        case 6:
+    //        {//Send message to
+    //            sendMessageTo(sentence);
+    //            break;
+    //        }
+    //        case 7:
+    //        {//GetClients
+    //            string clients;
+    //            clients = getClients(sentence);
+    //            break;
+    //        }
+    //
+    //
+    //        default:
+    //            cout << "nieznana komenda" << endl;
+    //    }
 
     //string mymsg = manager->receivePublicMessages("Tomys");
     //cout << mymsg << endl;
 
-    //        int on = 1;
-    //        struct sockaddr_in saddr;
-    //    
-    //        saddr = fillSocketAddress(1234);
-    //    
-    //        test();
-    //    
-    //        int sfd = socket(PF_INET, SOCK_STREAM, 0);
-    //        setsockopt(sfd, SOL_SOCKET, SO_REUSEADDR, (char*) &on, sizeof (on));
-    //    
-    //        bind(sfd, (struct sockaddr*) &saddr, sizeof (saddr));
-    //        listen(sfd, 10);
-    //    
-    //    
-    //        while (1) {
-    //    
-    //            struct cln* client = (struct cln*) malloc(sizeof (struct cln));
-    //    
-    //            socklen_t slt;
-    //            slt = sizeof (client->caddr);
-    //            client->cfd = accept(sfd, (struct sockaddr*) &client->caddr, &slt);
-    //    
-    //            pthread_t tid;
-    //            pthread_create(&tid, NULL, cthread, client);
-    //            pthread_detach(tid);
-    //        }
-    //    
-    //        close(sfd);
+    int on = 1;
+    struct sockaddr_in saddr;
+
+    saddr = fillSocketAddress(1234);
+
+    test();
+
+    int sfd = socket(PF_INET, SOCK_STREAM, 0);
+    setsockopt(sfd, SOL_SOCKET, SO_REUSEADDR, (char*) &on, sizeof (on));
+
+    bind(sfd, (struct sockaddr*) &saddr, sizeof (saddr));
+    listen(sfd, 10);
+
+
+    while (1) {
+
+        struct cln* client = (struct cln*) malloc(sizeof (struct cln));
+
+        socklen_t slt;
+        slt = sizeof (client->caddr);
+        client->cfd = accept(sfd, (struct sockaddr*) &client->caddr, &slt);
+
+        pthread_t tid;
+        pthread_create(&tid, NULL, cthread, client);
+        pthread_detach(tid);
+    }
+
+    close(sfd);
 
     return 0;
 }

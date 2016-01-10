@@ -19,7 +19,10 @@ User::User(string name) {
 }
 
 
-
+string User::getMessageFrom(string who)
+{
+    
+}
 
 
 

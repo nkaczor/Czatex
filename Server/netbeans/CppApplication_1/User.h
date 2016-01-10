@@ -29,6 +29,8 @@ public:
     string getPublicMessages();
     void insertPublicMessage(Message* msg);
     
+    string getMessageFrom(string who);
+    string insertMessageFrom(string who);
     
     User(const User& orig);
     virtual ~User();

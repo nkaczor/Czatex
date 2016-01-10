@@ -35,10 +35,13 @@ string UserList::getUsers() {
     string users = "";
 
     for (vector<User*>::iterator iterator = _usersList->begin(); iterator != _usersList->end(); iterator++) {
+        
+       // if ((*iterator)->getName() == currUser->getName())
+        
         if (std::distance(iterator, _usersList->end()) - 1 == 0) {
             users = users + (*iterator)->getName();
         } else {
-            users = users + (*iterator)->getName() + "\n";
+            users = users + (*iterator)->getName() + " ";
         }
     }
 
