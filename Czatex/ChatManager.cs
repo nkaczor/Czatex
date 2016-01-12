@@ -9,7 +9,7 @@ namespace Czatex
 {
     public class ChatManager
     {
-        
+        private ConnectionHandler cHandler;
         public int Join(string login) {
             Console.WriteLine(login);
             cHandler.SendData("3 "+ login);
@@ -26,13 +26,13 @@ namespace Czatex
         {
             cHandler.SendData("7 " + myLogin);
             string response = cHandler.Receive();
-            
             string[] users = response.Split(' ');
             
             List<Client> clients = new List<Client>();
             foreach (var user in users)
             {
-                clients.Add(new Client(user));
+                if(user.Length>0)
+                    clients.Add(new Client(user));
             }
             return clients;
         }
@@ -50,7 +50,6 @@ namespace Czatex
                     string[] args = message.Split(';');
                     messages.Add(new Message(args[1], args[0]));
                 }
-
                
             }
             return messages;
@@ -69,11 +68,11 @@ namespace Czatex
             string[] messagesResponse = response.Split('\n');
             if (messagesResponse[0] == "1")
             {
-
-                foreach (var message in messagesResponse.Skip(1))
+                messagesResponse = messagesResponse[1].Split(';');
+                foreach (var message in messagesResponse)
                 {
-                    string[] args = message.Split(';');
-                    messages.Add(new Message(args[1], args[0]));
+                    if(message.Length>0)
+                        messages.Add(new Message(message, from));
                 }
 
 
@@ -82,15 +81,16 @@ namespace Czatex
         }
         public void SendMessageTo(string myLogin, string to, string message)
         {
-            cHandler.SendData("5 " + myLogin + " " + to + " " + message);
+            cHandler.SendData("6 " + myLogin + " " + to + " " + message);
+            string response = cHandler.Receive();
         }
-        private ConnectionHandler cHandler;
+        public void Connect(string ip) {
+            cHandler.Connect(ip);
+        }
+
         public ChatManager() {
            cHandler = new ConnectionHandler();
-
-            /* get DNS host information */
-            cHandler.Connect();
-           
+                    
         }
     }
 }

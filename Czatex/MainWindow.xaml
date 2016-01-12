@@ -13,11 +13,11 @@
             <ColumnDefinition Width="175*"/>
             <ColumnDefinition Width="117*"/>
         </Grid.ColumnDefinitions>
-        <TextBox x:Name="loginTextBox" HorizontalAlignment="Left" Height="20" Margin="198,114,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="144"  Grid.ColumnSpan="2" Grid.Column="1"/>
-        <Label x:Name="loginLabel" Content="Login" HorizontalAlignment="Left" Margin="118,110,0,0" VerticalAlignment="Top" Grid.Column="1" Height="26" Width="39"/>
-        <Label x:Name="alertLabel" Content="" HorizontalAlignment="Center" Margin="118,156,0,0" VerticalAlignment="Top" Grid.Column="1" Height="26" Width="258" Foreground="#FFB40A0A" FontWeight="Bold" Grid.ColumnSpan="2"/>
-        <Button x:Name="button" Grid.ColumnSpan="2" Content="Zaloguj" HorizontalAlignment="Left" Margin="180,204,0,0" VerticalAlignment="Top" Width="145" Height="36" Grid.Column="1" Click="button_Click"/>
-        <Label x:Name="label" Content="Czatex" HorizontalAlignment="Left" Margin="115,36,0,0" VerticalAlignment="Top" Grid.ColumnSpan="2" Background="{x:Null}" Height="59" Width="144" FontSize="32" FontFamily="Arial" Foreground="#FF1D8F7A" RenderTransformOrigin="0.5,0.5" Grid.Column="1">
+        <TextBox x:Name="loginTextBox" HorizontalAlignment="Left" Height="20" Margin="212,138,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="144" Grid.Column="1" Grid.ColumnSpan="2"/>
+        <Label x:Name="loginLabel" Content="Login" HorizontalAlignment="Left" Margin="130,132,0,0" VerticalAlignment="Top" Grid.Column="1" Height="26" Width="39"/>
+        <Label x:Name="alertLabel" Content="" HorizontalAlignment="Center" Margin="130,173,10,0" VerticalAlignment="Top" Grid.Column="1" Height="26" Width="258" Foreground="#FFB40A0A" FontWeight="Bold" Grid.ColumnSpan="2"/>
+        <Button x:Name="button" Grid.ColumnSpan="2" Content="Zaloguj" HorizontalAlignment="Left" Margin="199,204,0,0" VerticalAlignment="Top" Width="145" Height="36" Grid.Column="1" Click="button_Click"/>
+        <Label x:Name="label" Content="Czatex" HorizontalAlignment="Left" Margin="103,19,0,0" VerticalAlignment="Top" Grid.ColumnSpan="2" Background="{x:Null}" Height="59" Width="144" FontSize="32" FontFamily="Arial" Foreground="#FF1D8F7A" RenderTransformOrigin="0.5,0.5" Grid.Column="1">
             <Label.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform/>
@@ -27,7 +27,7 @@
                 </TransformGroup>
             </Label.RenderTransform>
         </Label>
-        <Label x:Name="label_Copy" Content="Czatex" HorizontalAlignment="Left" Margin="64,38,0,0" VerticalAlignment="Top" Background="{x:Null}" Height="59" Width="144" FontSize="32" FontFamily="Arial" Foreground="#FF1D8F7A" RenderTransformOrigin="0.5,0.5" Grid.Column="2" Grid.ColumnSpan="2">
+        <Label x:Name="label_Copy" Content="Czatex" HorizontalAlignment="Left" Margin="62,36,0,0" VerticalAlignment="Top" Background="{x:Null}" Height="59" Width="144" FontSize="32" FontFamily="Arial" Foreground="#FF1D8F7A" RenderTransformOrigin="0.5,0.5" Grid.Column="2" Grid.ColumnSpan="2">
             <Label.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform/>
@@ -37,6 +37,8 @@
                 </TransformGroup>
             </Label.RenderTransform>
         </Label>
+        <TextBox x:Name="ipTextBox" HorizontalAlignment="Left" Height="20" Margin="212,107,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="144" Grid.Column="1" Grid.ColumnSpan="2"/>
+        <Label x:Name="ipLabel" Content="IP serwera" HorizontalAlignment="Left" Margin="130,101,0,0" VerticalAlignment="Top" Grid.Column="1" Height="26" Width="72"/>
 
     </Grid>
 </Window>

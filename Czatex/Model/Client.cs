@@ -10,9 +10,10 @@ namespace Czatex.Model
     {
         public Client(string name) {
             _name = name;
+            Messages = new List<Message>();
         }
         private string _name;
-      
+        public List<Message> Messages { get; set; }
         public string Name
         {
             get { return _name; }

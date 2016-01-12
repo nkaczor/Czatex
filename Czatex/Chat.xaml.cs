@@ -22,17 +22,17 @@ namespace Czatex
     public partial class Chat : Window
     {
         List<Message> messages = new List<Message>();
+        List<Message> publicMessages = new List<Message>();
         List<Client> clients = new List<Client>();
         private Boolean isPublic = true;
         private String selectedUser = "";
         private ChatManager chatManager;
         private string myLogin;
-        private void setClientsTimer() {
+        private void setClientsTimer()
+        {
             Timer tmrClients = new Timer();
             tmrClients.Interval = 1000; // 1 second
-            
             tmrClients.Elapsed += getClients;
-         
             tmrClients.AutoReset = true;
             tmrClients.Enabled = true;
         }
@@ -40,9 +40,7 @@ namespace Czatex
         {
             Timer tmrMessages = new Timer();
             tmrMessages.Interval = 1000; // 1 second
-
             tmrMessages.Elapsed += getMessages;
-
             tmrMessages.AutoReset = true;
             tmrMessages.Enabled = true;
         }
@@ -56,23 +54,31 @@ namespace Czatex
         {
             this.Dispatcher.Invoke((Action)(() =>
             {
- 
-            clients = chatManager.GetAllClients(myLogin);
-               
-            clientsList.ItemsSource = clients;
-            clientsList.Items.Refresh();
-                      
-             }));
+                List<Client> newClients = chatManager.GetAllClients(myLogin);
+                foreach (var client in newClients) {
+                    if (!clients.Any(x => x.Name == client.Name))
+                        clients.Add(client);
+                }
+                foreach (var client in clients)
+                {
+                    if (!clients.Any(x => x.Name == client.Name))
+                        clients.Remove(client);
+                }
+                clientsList.ItemsSource = clients;
+                clientsList.Items.Refresh();
+            }));
         }
         private void getMessages(Object source, ElapsedEventArgs e)
         {
             this.Dispatcher.Invoke((Action)(() =>
             {
-
-                if(isPublic)
+                if (isPublic)
                     messages.AddRange(chatManager.GetAllMessages(myLogin));
                 else
+                {
+                    //List<Message> userMessages = clients.First(x => x.Name == selectedUser).Messages;
                     messages.AddRange(chatManager.GetMessagesFrom(myLogin, selectedUser));
+                }
                 messagesList.ItemsSource = messages;
                 messagesList.Items.Refresh();
 
@@ -85,13 +91,12 @@ namespace Czatex
             InitializeComponent();
             setClientsTimer();
             setMessagesTimer();
-          
-
+            messages = publicMessages;
         }
 
         private void sendButton_Click(object sender, RoutedEventArgs e)
         {
-            if(isPublic)
+            if (isPublic)
                 chatManager.SendMessageToAll(myLogin, messageTextBox.Text);
             else
                 chatManager.SendMessageTo(myLogin, selectedUser, messageTextBox.Text);
@@ -106,8 +111,9 @@ namespace Czatex
             if (e.AddedItems.Count > 0)
             {
                 selectedUser = ((Client)e.AddedItems[0]).Name;
-                messages.Clear();
+                messages = clients.First(x => x.Name == selectedUser).Messages;
                 isPublic = false;
+                friendLabel.Content = selectedUser;
             }
 
         }
@@ -115,8 +121,9 @@ namespace Czatex
         private void publicButton_Click(object sender, RoutedEventArgs e)
         {
             selectedUser = "";
-            messages.Clear();
+            messages = publicMessages;
             isPublic = true;
+            friendLabel.Content = "Czat publiczny";
         }
     }
 }

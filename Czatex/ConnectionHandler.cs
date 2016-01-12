@@ -12,30 +12,28 @@ namespace Czatex
 {
     class ConnectionHandler
     {
+        private ManualResetEvent connectDone = new ManualResetEvent(false);
+        private ManualResetEvent sendDone = new ManualResetEvent(false);
+        private ManualResetEvent receiveDone = new ManualResetEvent(false);
+        private Socket currentSocketFd = null;
+      
+        
         private void ReceiveCallback(IAsyncResult ar)
         {
             
             try
             {
-                
-                /* retrieve the SocketStateObject */
+
                 SocketStateObject state = (SocketStateObject)ar.AsyncState;
                 Socket socketFd = state.m_SocketFd;
 
 
-                /* read data */
                 int size = socketFd.EndReceive(ar);
 
                 
                 if (size > 0)
-                {
-
-                    
+                {  
                     state.m_StringBuilder.Append(Encoding.ASCII.GetString(state.m_DataBuf, 0, size));
-                   
-                    /* get the rest of the data */
-                    
-                    
                 }
                  
                 receiveDone.Set();
@@ -47,11 +45,6 @@ namespace Czatex
             }
         }
 
-
-
-        private ManualResetEvent connectDone = new ManualResetEvent(false);
-        private ManualResetEvent sendDone = new ManualResetEvent(false);
-        private ManualResetEvent receiveDone = new ManualResetEvent(false);
         public void SendData(String message)
         {
             
@@ -76,15 +69,11 @@ namespace Czatex
         {
             try
             {
-                // Retrieve the socket from the state object.
-                Socket client = (Socket)ar.AsyncState;
-                
-                // Complete sending the data to the remote device.
+               
+                Socket client = (Socket)ar.AsyncState;        
                 int bytesSent = client.EndSend(ar);
                 Console.WriteLine("Sent {0} bytes to server.", bytesSent);
-
-                // Signal that all bytes have been sent.
-                sendDone.Set();
+                 sendDone.Set();
             }
             catch (Exception e)
             {
@@ -99,7 +88,6 @@ namespace Czatex
             SocketStateObject state = new SocketStateObject();
             
             state.m_SocketFd = currentSocketFd;
-            
 
             Socket socketFd = currentSocketFd;
             
@@ -116,15 +104,10 @@ namespace Czatex
             
             try
             {
-
-                
-                /* retrieve the socket from the state object */
+   
                 currentSocketFd = (Socket)ar.AsyncState;
 
-                /* complete the connection */
                 currentSocketFd.EndConnect(ar);
-                
-                /* create the SocketStateObject */
 
                 connectDone.Set();
                
@@ -137,8 +120,8 @@ namespace Czatex
             }
            
         }
-        private Socket currentSocketFd = null;
-        public void Connect()
+       
+        public void Connect(string ip)
         {
             connectDone.Reset();
             try
@@ -151,10 +134,10 @@ namespace Czatex
                 /* create a socket */
                 socketFd = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
 
-                /* remote endpoint for the socket */
-                System.Net.IPAddress LongIp = System.Net.IPAddress.Parse("192.168.0.105");
+                
+                System.Net.IPAddress LongIp = System.Net.IPAddress.Parse(ip);
 
-                endPoint = new IPEndPoint(LongIp.Address, Int32.Parse("1234"));
+                endPoint = new IPEndPoint(LongIp, Int32.Parse("1234"));
 
               
 

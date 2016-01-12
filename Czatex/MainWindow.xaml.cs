@@ -33,7 +33,11 @@ namespace Czatex
    
         private void button_Click(object sender, RoutedEventArgs e)
         {
+            string ip = ipTextBox.Text;
             string login = loginTextBox.Text;
+
+            chatManager.Connect(ip);
+
 
             if (login.Length == 0)
             {
