@@ -1,3 +1,0 @@
-program:
-	g++ -pthread server.cpp -o server
-	g++ functions.cpp -o functions -Im
