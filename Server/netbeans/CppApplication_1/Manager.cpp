@@ -42,16 +42,19 @@ string Manager::receiveMessagesFrom(string who, string from) {
     return messages;
 }
 
- void Manager::insertMessageFrom(Message* msg,string to)
+ string Manager::insertMessageFrom(Message* msg,string to)
  {
+     string flag = "2";//taki user nie istnieje
+     
      for (vector<User*>::iterator iterator = _userList->getUsersList()->begin(); iterator != _userList->getUsersList()->end(); iterator++) {
         User* user = *iterator;
         if (user->getName() == to) {
-            //cout<<"inserting"<<endl;
+            flag = "1"; //user istnieje
             user->insertMessage(msg);
             break;
         }
     }
+     return flag;
  }
  
 

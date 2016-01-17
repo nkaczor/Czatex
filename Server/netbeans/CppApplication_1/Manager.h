@@ -28,7 +28,7 @@ public:
     int getNumberOfUsers();
     
     string receiveMessagesFrom(string who,string from); 
-    void insertMessageFrom(Message* msg,string to);
+    string insertMessageFrom(Message* msg,string to);
     
     
     static Manager& getManager();
